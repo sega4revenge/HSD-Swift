@@ -2,7 +2,7 @@
 //  UNUserNotificationCenter.swift
 //  HSD
 //
-//  Created by Tô Tử Siêu on 6/15/18.
+//  Created by Tô Tử S iêu on 6/15/18.
 //  Copyright © 2018 Finger. All rights reserved.
 //
 
