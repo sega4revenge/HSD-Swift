@@ -23,17 +23,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         
         AppUtils.setScheduleRepeat(hour: 8,minute: 10)
-        AppUtils.loadEventsToNotification()
-        print("fgdfgdfhdfh")
+       
         
     }
-    
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler:
+        @escaping (UIBackgroundFetchResult) -> Void) {
+        // Check for new data.
+       
+            AppUtils.setScheduleRepeat(hour: 0,minute: 10)
+            completionHandler(.newData)
+      
+    }
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+         UIApplication.shared.setMinimumBackgroundFetchInterval(60)
         UNUserNotificationCenter.current().delegate = self
-            NotificationCenter.default.addObserver(self, selector:#selector(self.calendarDayDidChange), name: NSNotification.Name.NSCalendarDayChanged, object:nil)
-       UNUserNotificationCenter.current().scheduleNotificationMidNight()
+         (self.window!.rootViewController as! UINavigationController).navigationBar.setValue(true, forKey: "hidesShadow")
+       
         if(AppUtils.getUserID() != "")
         {
 
@@ -189,26 +197,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         if(notification.request.content.categoryIdentifier == "midnight")
         {
-            print("1 lan")
-            AppUtils.setScheduleRepeat(hour: 0,minute: 10)
-            AppUtils.loadEventsToNotification()
+                print("loi ok 123")
+                AppUtils.loadEventsToNotification()
               completionHandler([])
         }
-        else if(notification.request.content.title == "Tổng hợp")
+        else if(notification.request.content.categoryIdentifier == "report")
             {
-                let noti = NotificationModel()
-                noti._id = AppUtils.objectId()
-                noti.type = 1
-                noti.created_at = AppUtils.calendar.date(byAdding: .hour, value: 0, to: Date())!.timeIntervalSince1970*1000
-                noti.content = notification.request.content.body
-                try! AppUtils.getInstance().write {
-                    
-                    print("da them")
-                    AppUtils.getInstance().add(noti, update: false)
-                }
-                let data:[String: NotificationModel] = ["notification": noti]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification_update"), object: nil,
-                                                userInfo: data)
+//                let noti = NotificationModel()
+//                noti._id = AppUtils.objectId()
+//                noti.type = 1
+//                noti.created_at = AppUtils.calendar.date(byAdding: .hour, value: 0, to: Date())!.timeIntervalSince1970*1000
+//                noti.content = notification.request.content.body
+//                try! AppUtils.getInstance().write {
+//
+//                    print("da them")
+//                    AppUtils.getInstance().add(noti, update: false)
+//                }
+//                let data:[String: NotificationModel] = ["notification": noti]
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification_update"), object: nil,
+//                                                userInfo: data)
                  completionHandler([.alert, .badge, .sound])
             }
 

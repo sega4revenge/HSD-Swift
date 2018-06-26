@@ -46,7 +46,7 @@ class ProductViewModel: NSObject {
                 self._producttype = repo?.producttype
                 
             }
-            
+            print("okokoo")
             complete()
         }
         
@@ -80,6 +80,56 @@ class ProductViewModel: NSObject {
                         var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
                         
                         b.updateValue(parameters, forKey: "\(url + idproduct)")
+                        UserDefaults.standard.set(b, forKey: "listrequest")
+                    }
+                    AppUtils.getInstance().add(a, update: true)
+                    
+                    
+                    
+                }
+            }
+            else
+            {
+                // Other errors
+            }
+            print(response)
+            complete()
+        }
+        
+        
+    }
+    
+    func updateProduct(product : Product,complete: @escaping DownloadComplete) {
+        print("bat dau xoa")
+        let parameters = [
+            "id_product" : product._id!,
+            "nameproduct" : product.namechanged!,
+            "hsd_ex" : product.expiretime,
+              "description" : product.des!,
+                "daybefore" : product.daybefore
+            ] as [String : Any]
+        
+        
+        Alamofire.request("\(AppUtils.BASE_URL)product/update-infomation", method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<Response>) in
+            if let err = response.result.error as? URLError, err.code  == URLError.Code.notConnectedToInternet
+            {
+                let url = "\(AppUtils.BASE_URL)product/update-infomation"
+                
+                try! AppUtils.getInstance().write {
+                    let a = RequestObject()
+                    a.url = url
+                    a._id = url + product._id!
+                    
+                    if  UserDefaults.standard.object(forKey: "listrequest") == nil {
+                        var b = Dictionary<String, Parameters>()
+                        b.updateValue(parameters, forKey: "\(url + product._id!)")
+                        UserDefaults.standard.set(b, forKey: "listrequest")
+                        //  Doesn't exist
+                    }
+                    else{
+                        var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
+                        
+                        b.updateValue(parameters, forKey: "\(url + product._id!)")
                         UserDefaults.standard.set(b, forKey: "listrequest")
                     }
                     AppUtils.getInstance().add(a, update: true)

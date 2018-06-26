@@ -8,13 +8,24 @@
 
 import UIKit
 import GoogleSignIn
+import Kingfisher
 class ProfileController: UIViewController {
     var setting : User?
     @IBOutlet weak var UI_frametime: UIView!
-    @IBOutlet weak var UI_name: UIStackView!
+    @IBOutlet weak var UI_avatar: UIImageView!
     @IBOutlet weak var UI_type: UILabel!
+    @IBOutlet weak var UI_username: UILabel!
+    
     @IBOutlet weak var UI_phone: UILabel!
+    @IBOutlet weak var UI_product_warning: UILabel!
+
+    
+    @IBOutlet weak var UI_product_safe: UILabel!
+    @IBOutlet weak var UI_product_expired: UILabel!
     @IBOutlet weak var UI_logout: UIView!
+    @IBOutlet weak var UI_top_view: UIView!
+    @IBOutlet weak var UI_bottom_view: UIView!
+  
     @IBAction func UI_noti_switch(_ sender: UISwitch) {
         if sender.isOn {
           
@@ -36,10 +47,19 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-       
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadprofile(_:)), name: NSNotification.Name(rawValue: "ReloadProfile"), object: nil)
         // Do any additional setup after loading the view.
     }
-    
+    @objc func reloadprofile(_ notification: NSNotification) {
+        //        if let foo = notification_list.first(where: {$0.productid == (notification.userInfo!["notification"] as? Notification)?.productid}) {
+        //            // do something with foo
+        //        } else {
+        //
+        //        }
+       configUI()
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,8 +72,21 @@ class ProfileController: UIViewController {
     }
     
     func configUI(){
-       UI_phone.text = UserDefaults.standard.string(forKey: "phone")
-        
+     
+        UI_username.text = "Tô Tử Siêu"
+       
+        let viewcontroller = tabBarController?.viewControllers![0] as! HomeController
+        UI_product_expired.text = String(viewcontroller.itemsection[0].count)
+        UI_product_warning.text =  String(viewcontroller.itemsection[1].count)
+        UI_product_safe.text =  String(viewcontroller.itemsection[2].count)
+        UI_top_view.layer.cornerRadius = 10
+        UI_bottom_view.layer.cornerRadius = 10
+        let processor = RoundCornerImageProcessor(cornerRadius: 40)
+        UI_avatar.kf.setImage(with: URL(string: AppUtils.getAvatar()),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+            
+            
+        })
+        UI_username.text = AppUtils.getName()
         UI_logout.isUserInteractionEnabled = true
         UI_logout.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(tapGestureRecognizer:))))
     }

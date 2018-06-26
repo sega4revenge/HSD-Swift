@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import AVFoundation
+import AVFoundation
+
 
 public protocol LBXScanViewControllerDelegate {
     func scanFinished(scanResult: LBXScanResult, error: String?)
@@ -16,7 +18,7 @@ public protocol LBXScanViewControllerDelegate {
 
 
 open class LBXScanViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    var player: AVAudioPlayer?
     //返回扫码结果，也可以通过继承本控制器，改写该handleCodeResult方法即可
     open var scanResultDelegate: LBXScanViewControllerDelegate?
     
@@ -24,6 +26,10 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     
     open var scanStyle: LBXScanViewStyle = LBXScanViewStyle()
     
+    @IBAction func UI_back(_ sender: UIButton) {
+        print("da ban")
+         self.performSegue(withIdentifier: "unwindToMenu", sender: self)
+    }
     open var qRScanView: LBXScanView?
     open var result_barcode : String = ""
     
@@ -49,12 +55,13 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     
     //是否需要识别后的当前图像
     public  var isNeedCodeImage = false
-    
+    var topview  : UIView?
     //相机启动提示文字
-    public var readyString:String! = "loading"
+    public var readyString:String! = "Đang tải"
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+    
         scanStyle.centerUpOffset = 44;
         scanStyle.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.On;
         scanStyle.photoframeLineW = 6;
@@ -87,9 +94,9 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
         }
         
         let yMax = self.view.frame.maxY - self.view.frame.minY
-        
+     
         bottomItemsView = UIView(frame:CGRect(x: 0.0, y: yMax-200,width: self.view.frame.size.width, height: 100 ) )
-        
+      
         
         bottomItemsView!.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
         
@@ -115,7 +122,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     }
     @objc func openOrCloseFlash()
     {
-        print("loi")
+      
         scanObj!.changeTorch()
         
         isOpenedFlash = !isOpenedFlash
@@ -140,6 +147,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+         self.navigationController?.isNavigationBarHidden = false
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -147,7 +155,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
         super.viewDidAppear(animated)
         
         drawScanView()
-        
+    
         perform(#selector(LBXScanViewController.startScan), with: nil, afterDelay: 0.3)
         
     }
@@ -189,6 +197,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
         
         //相机运行
         scanObj?.start()
+        
     }
     
     open func drawScanView()
@@ -226,10 +235,35 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
             
             showMsg(title: result.strBarCodeType, message: result.strScanned)
         }
-    }
-    
-    override open func viewWillDisappear(_ animated: Bool) {
         
+    }
+ 
+    
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "scream", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            /* iOS 10 and earlier require the following line:
+             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    override open func viewWillDisappear(_ animated: Bool) {
+         self.navigationController?.isNavigationBarHidden = true
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         
         qRScanView?.stopScanAnimation()
@@ -279,13 +313,27 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func showMsg(title:String?,message:String?)
-    {
-      
-        let alertPrompt = UIAlertController(title: "Đã tìm thấy barcode", message: message!, preferredStyle: .actionSheet)
-       
-        let confirmAction = UIAlertAction(title: "Xác nhận sử dụng barcode này", style: UIAlertActionStyle.default, handler: { (action) -> Void in
+    {   player?.stop()
+        playSound()
+        let alertPrompt = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let labelui = [
+            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17),
+            NSAttributedStringKey.foregroundColor : UIColor.lightGray
+            ] as [NSAttributedStringKey : Any]
+        let barcodeui = [
+            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 23),
+            ] as [NSAttributedStringKey : Any]
+        let customTitle = NSMutableAttributedString(string: "Đã tìm thấy barcode\n", attributes:  labelui)
+        let customMessage = NSMutableAttributedString(string: message!, attributes:  barcodeui)
+          alertPrompt.setValue(customTitle, forKey: "attributedTitle")
+    
+          alertPrompt.setValue(customMessage, forKey: "attributedMessage")
+        let confirmAction = UIAlertAction(title: "Sử dụng barcode này", style: UIAlertActionStyle.default, handler: { (action) -> Void in
+            
             self.result_barcode = message!
+            
          self.performSegue(withIdentifier: "unwindToMenu", sender: self)
+          
         })
         let cancelAction = UIAlertAction(title: "Hủy bỏ", style: UIAlertActionStyle.default, handler: { (action) -> Void in
             

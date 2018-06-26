@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Alamofire
+import Kingfisher
 import Toaster
 class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,UITextViewDelegate {
     var product_temp = Product()
@@ -17,6 +18,9 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
     @IBOutlet weak var UI_hint: UILabel!
     @IBOutlet weak var UI_productname: UITextField!
     @IBOutlet weak var UI_productimage: UIImageView!
+    @IBOutlet weak var UI_topview: UIView!
+    @IBOutlet weak var UI_bottomview: UIView!
+     let processor = ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 300)) >> RoundCornerImageProcessor(cornerRadius: 50)
     @IBAction func UI_scan_barcode(_ sender: UIButton) {
         //设置扫码区域参数
       
@@ -30,8 +34,6 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
     @IBOutlet weak var UI_expiredtime: UITextField!
     var picker:UIImagePickerController?=UIImagePickerController()
     var popover:UIPopoverPresentationControllerDelegate?=nil
-    var timer = Timer()
-    var count = 1
     var barcode_temp : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,7 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         UI_productimage.isUserInteractionEnabled = true
         UI_productimage.addGestureRecognizer(tapGestureRecognizer)
+          UI_productimage.contentMode = .scaleAspectFill
         UI_barcode.delegate = self
         UI_productname.delegate = self
         UI_description.delegate = self
@@ -53,6 +56,8 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
         UI_description.layer.borderColor = UIColor.lightGray.cgColor
         UI_description.text = "Mô tả chi tiết sản phẩm"
         UI_description.textColor = UIColor.lightGray
+        UI_productimage.kf.base.layer.cornerRadius = 20
+        UI_productimage.kf.base.layer.masksToBounds = true
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
@@ -493,7 +498,9 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            UI_productimage.image = AppUtils.resize(image: image)
+         
+             UI_productimage.kf.base.image = AppUtils.resize(image: image)
+      
         }
         
         picker.dismiss(animated: true, completion: nil);

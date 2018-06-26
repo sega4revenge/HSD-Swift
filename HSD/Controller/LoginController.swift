@@ -143,6 +143,7 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
             //            let givenName = user.profile.givenName
             //            let familyName = user.profile.familyName
             //            let email = user.profile.email
+            AppUtils.storeTest(image:(user.profile.imageURL(withDimension: 120)).absoluteString, name: user.profile.name)
             prepareDialog()
             self.loginsocial(phone: user.userID , type: AppUtils.GOOGLE)
             // ...

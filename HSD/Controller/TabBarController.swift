@@ -14,7 +14,9 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:false)
         self.delegate = self
-      
+        UITabBar.appearance().layer.borderWidth = 0.0
+        UITabBar.appearance().clipsToBounds = true
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.

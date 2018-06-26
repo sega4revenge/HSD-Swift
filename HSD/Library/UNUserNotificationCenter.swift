@@ -51,7 +51,7 @@ extension UNUserNotificationCenter {
         let content = UNMutableNotificationContent()
         content.title = "Tổng hợp"
         content.sound = UNNotificationSound.default()
-    
+      content.categoryIdentifier = "report"
         content.body = "Hôm nay có \(AppUtils.loadEvents()) sắp hết hạn và \(AppUtils.loadEventsExpired()) sản phẩm đã hết hạn"
   
         let request = UNNotificationRequest(identifier: "HSD", content: content, trigger: trigger)
@@ -87,15 +87,13 @@ extension UNUserNotificationCenter {
         let content = UNMutableNotificationContent()
         content.title = "Chú ý"
         content.categoryIdentifier = "midnight"
-         content.sound = UNNotificationSound.default()
+   
         content.body = "Có \(AppUtils.loadEventsExpired()) bắt đầu hết hạn hôm nay"
         
         let request = UNNotificationRequest(identifier: "midnight", content: content, trigger: trigger)
         
         //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-            if(!notificationRequests.contains(request))
-            {
+     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["midnight"])
                 UNUserNotificationCenter.current().add(request) {(error) in
                     if let error = error {
                         print(" We had an error: \(error)")
@@ -104,9 +102,7 @@ extension UNUserNotificationCenter {
                         print(" thanh cong roi 2")
                     }
                 }
-            }
-            
-        }
+
     }
     //    func readEvents() {
     //

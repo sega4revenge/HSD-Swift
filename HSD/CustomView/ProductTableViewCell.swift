@@ -12,7 +12,9 @@ class ProductTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cell: UIView!
   
-    @IBOutlet weak var UI_warning: UILabel!
+    @IBOutlet weak var back_view: UIView!
+    
+    @IBOutlet weak var UI_expired: UILabel!
     @IBOutlet weak var UI_name: UILabel!
     @IBOutlet weak var UI_time: UILabel!
     @IBOutlet weak var UI_image: UIImageView!

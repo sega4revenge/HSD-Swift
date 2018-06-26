@@ -22,7 +22,7 @@ class Product: Object,Mappable {
     @objc dynamic   var imagechanged: String?
     @objc dynamic  var barcode : String?
     @objc dynamic  var des : String?
-    @objc dynamic  var created_at: Double = 0.0
+    @objc dynamic  var createtime: Double = 0.0
     
     
     
@@ -46,5 +46,6 @@ class Product: Object,Mappable {
         imagechanged <- map["imagechanged"]
         des <- map["description"]
         barcode <- map["barcode"]
+         createtime <- map["createtime"]
     }
 }

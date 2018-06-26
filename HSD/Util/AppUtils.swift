@@ -42,10 +42,10 @@ class AppUtils : NSObject  {
         
         if(productviewmodel == nil)
         {
-            print("chua xong")
+          
             productviewmodel = ProductViewModel()
         }
-        print("da xong")
+      
         return productviewmodel!
     }
     static func getUserViewModel() -> UserViewModel
@@ -111,8 +111,8 @@ class AppUtils : NSObject  {
             
             let components = calendar.dateComponents([.day], from: startOfNow, to: startOfTimeStamp)
             let day = components.day!
-            if day < 1 { return "\(abs(day)) ngày trước" }
-            else { return "Còn \(day) ngày" }
+            if day < 1 { return "\(abs(day)) ngày" }
+            else { return "\(day) ngày" }
         }
     }
     
@@ -122,7 +122,7 @@ class AppUtils : NSObject  {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
+        dateFormatter.dateFormat = "dd-MM-yyyy" //Specify your format that you want
         return dateFormatter.string(from: date)
     }
     static func createDate(weekday: Int, hour: Int, minute: Int, year: Int)->Date{
@@ -206,19 +206,17 @@ class AppUtils : NSObject  {
     //==========================================================================
     
     //==========================================================================   notification function
-    static func test(){
-         let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
-        print(result.count)
-        print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!)
-           print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!)
-        for index in 0...result.count - 1 {
-           print(result[index].namechanged)
-            
-            
-        }
-      
-    }
-  
+//    static func test(){
+//         let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
+//     
+//        for index in 0...result.count - 1 {
+//         
+//            
+//            
+//        }
+//      
+//    }
+//  
   
     static func loadEventsToNotification()  {
      
@@ -235,7 +233,7 @@ class AppUtils : NSObject  {
                     notification._id = objectId()
                     notification.content = result[index].namechanged! + " đã hết hạn vào hôm nay"
                     notification.type = 0
-                    notification.created_at = calendar.date(byAdding: .hour, value: AppUtils.timezone, to: Date())!.timeIntervalSince1970*1000
+                    notification.create_at = calendar.date(byAdding: .hour, value: AppUtils.timezone, to: Date())!.timeIntervalSince1970*1000
                     notification.productid = result[index]._id
                     notification.image = result[index].imagechanged
                     try! AppUtils.getInstance().write {
@@ -251,7 +249,7 @@ class AppUtils : NSObject  {
                     try! AppUtils.getInstance().write {
                         result2[0].content = result[index].namechanged! + " đã hết hạn vào hôm nay"
                         result2[0].type = 0
-                        result2[0].created_at = calendar.date(byAdding: .hour, value: AppUtils.timezone, to: Date())!.timeIntervalSince1970*1000
+                        result2[0].create_at = calendar.date(byAdding: .hour, value: AppUtils.timezone, to: Date())!.timeIntervalSince1970*1000
                         result2[0].productid = result[index]._id
                         result2[0].image = result[index].imagechanged
                         AppUtils.getInstance().add( result2[0], update: true)
@@ -271,10 +269,11 @@ class AppUtils : NSObject  {
     }
     static func objectId() -> String {
         let time = String(Int(NSDate().timeIntervalSince1970), radix: 16, uppercase: false)
-        let machine = String(arc4random_uniform(900000) + 100000)
-        let pid = String(arc4random_uniform(9000) + 1000)
-        let counter = String(arc4random_uniform(900000) + 100000)
-        return time + machine + pid + counter
+        let machine = String(arc4random_uniform(900000) + 100000, radix: 16, uppercase: false)
+        let pid =  String(arc4random_uniform(9000) + 1000, radix: 16, uppercase: false)
+        let counter =  String(arc4random_uniform(90000) + 100000, radix: 16, uppercase: false)
+         let counter2 =  String(arc4random_uniform(900) + 10, radix: 16, uppercase: false)
+        return time + machine + pid + counter + counter2
     }
     static func loadEvents() -> Int {
         
@@ -294,9 +293,9 @@ class AppUtils : NSObject  {
     }
     
     static func loadEventsExpired() -> Int {
-//        print(calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.getStartLocalDate(date: Date()))!)
-//            print(calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!)
-        let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
+        print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!)
+            print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!)
+        let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getEndLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
         
 //        let eventStore = EKEventStore()
 //        let ekcalendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
@@ -362,7 +361,7 @@ class AppUtils : NSObject  {
                 let notification = NotificationModel()
                 notification.content = "\(product.namechanged!) đã hết hạn vào hôm nay"
                 notification.type = 0
-                notification.created_at = NSDate().timeIntervalSince1970
+                notification.create_at = NSDate().timeIntervalSince1970
                 notification.productid = product._id
                 notification.image = product.imagechanged
                 AppUtils.getInstance().add(notification, update: true)
@@ -572,11 +571,44 @@ class AppUtils : NSObject  {
         
         
         preferences.set(user._id, forKey: "iduser")
-           preferences.set(user.phone, forKey: "phone")
-         preferences.set(user.type_login, forKey: "type_login")
-                preferences.set(user.create_at, forKey: "create_at")
+        preferences.set(user.phone, forKey: "phone")
+        preferences.set(user.type_login, forKey: "type_login")
+        preferences.set(user.create_at, forKey: "create_at")
         preferences.synchronize()
         
+    }
+    static func storeTest(image : String,name : String){
+        let preferences = UserDefaults.standard
+        
+        
+        
+        preferences.set(image, forKey: "avatar")
+        preferences.set(name, forKey: "name")
+      
+        preferences.synchronize()
+        
+    }
+    static func getAvatar() -> String {
+        let preferences = UserDefaults.standard
+        
+        
+        if preferences.object(forKey: "avatar") == nil {
+            return ""
+            //  Doesn't exist
+        } else {
+            return preferences.string(forKey: "avatar")!
+        }
+    }
+    static func getName() -> String {
+        let preferences = UserDefaults.standard
+        
+        
+        if preferences.object(forKey: "name") == nil {
+            return ""
+            //  Doesn't exist
+        } else {
+            return preferences.string(forKey: "name")!
+        }
     }
     static func getUserID() -> String {
         let preferences = UserDefaults.standard

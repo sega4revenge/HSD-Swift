@@ -16,7 +16,7 @@ class NotificationModel: Object,Mappable {
     @objc dynamic var _id : String?
     @objc dynamic var type: Int = 0
     @objc dynamic  var content: String?
-    @objc dynamic var created_at: Double = 0.0
+    @objc dynamic var create_at: Double = 0.0
     @objc dynamic  var productid: String?
     @objc dynamic var image: String?
     @objc dynamic  var iduser: String?
@@ -37,5 +37,6 @@ class NotificationModel: Object,Mappable {
         productid <- map["productid"]
         image <- map["image"]
          iduser <- map["idUser"]
+          create_at <- map["create_at"]
     }
 }

@@ -35,7 +35,7 @@ class ReachabilityManager: NSObject {
             }
         case Reachability.Connection.cellular:
             debugPrint("Network reachable through Cellular Data")
-           
+            
             
             DispatchQueue.global(qos: .background).async {
                 self.syncData()
@@ -46,36 +46,46 @@ class ReachabilityManager: NSObject {
     func syncData(){
         if(UserDefaults.standard.object(forKey: "listrequest") != nil)
         {
-              var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
+            var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
             
-                var c = Array(b.keys)
+            var c = Array(b.keys)
             if(c.count != 0){
-                print(c)
+                print(c.count)
+                let myGroup = DispatchGroup()
                 for index in 0...c.count - 1 {
-                    
-                    let result = AppUtils.getInstance().objects(RequestObject.self).filter(" _id = '\(c[index])' ").first
-                    
-                    Alamofire.request((result?.url)! , method: .post, parameters: b[c[index]] ,encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+                    myGroup.enter()
+                    print(c[index])
+                    print(1)
+                    let result = AppUtils.getInstance().objects(RequestObject.self).filter(" _id = '\(c[index])' ")
+                    print(result.count)
+                    let url = result[0].url
+                    try! AppUtils.getInstance().write {
+                        print("da xong")
+                        print(result.count)
+                        AppUtils.getInstance().delete(result[0])
+                        
+                    }
+                    Alamofire.request(url! , method: .post, parameters: b[c[index]] ,encoding: JSONEncoding.default, headers: nil).responseJSON { response in
                         if(response.response?.statusCode == 200)
                         {
-                            try! AppUtils.getInstance().write {
-                                
-                                AppUtils.getInstance().delete(result!)
-                                
-                            }
-                        
+                            myGroup.leave()
                             b.remove(at: b.index(forKey: c[index])!)
+                            
                         }
                     }
                 }
-                if(b.count == 0)
-                {
-                     UserDefaults.standard.removeObject(forKey: "listrequest")
+                myGroup.notify(queue: .main) {
+                    if(b.count == 0)
+                    {
+                        print("da het request")
+                        UserDefaults.standard.removeObject(forKey: "listrequest")
+                    }
                 }
+                
             }
         }
-     
-       
+        
+        
         
     }
     func startMonitoring() {

@@ -29,8 +29,8 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "notification_cell") as! NotificationViewCell
        
         cell.UI_content.text = notification_list[indexPath.row].content
-     
-        cell.UI_time.text = AppUtils.dayDifference(from : notification_list[indexPath.row].created_at/1000)
+       
+        cell.UI_time.text = AppUtils.dayDifference(from : notification_list[indexPath.row].create_at)
         if(notification_list[indexPath.row].image == nil || notification_list[indexPath.row].image == ""){
             cell.UI_image.image = UIImage(named: "barcode")
         }
@@ -46,10 +46,11 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        UI_tableview.delegate = self
-        UI_tableview.dataSource = self
+     
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotification(_:)), name: NSNotification.Name(rawValue: "notification_update"), object: nil)
          reload()
+        UI_tableview.delegate = self
+        UI_tableview.dataSource = self
         // Do any additional setup after loading the view.
     }
     @objc func updateNotification(_ notification: NSNotification) {
@@ -62,6 +63,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
       
         var vitri : Int
         if let index = notification_list.index(where: {$0.productid == (notification.userInfo!["notification"] as? NotificationModel)!.productid}) {
+            print(index)
             vitri = index
              notification_list.remove(at: vitri)
             self.notification_list.insert((notification.userInfo!["notification"] as? NotificationModel)!, at: 0)
@@ -76,7 +78,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
         
     }
     func reload(){
-        let result = AppUtils.getInstance().objects(NotificationModel.self).sorted(byKeyPath: "created_at", ascending: false)
+        let result = AppUtils.getInstance().objects(NotificationModel.self).sorted(byKeyPath: "create_at", ascending: false)
         print(result.count)
         if(result.count>0)
         {
