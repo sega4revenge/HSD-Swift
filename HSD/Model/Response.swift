@@ -12,6 +12,7 @@ struct Response: Mappable {
     
     var message: String?
     var status: Int?
+    var result : Result?
     var listproduct = [Product]()
     var producttype : ProductType?
         var product : Product?

@@ -64,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>HFSwipeView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -84,11 +79,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PureLayout.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -100,11 +90,6 @@
 			<false/>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TinyLog.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

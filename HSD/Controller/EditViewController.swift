@@ -9,8 +9,10 @@
 import UIKit
 import Photos
 import Kingfisher
+import RealmSwift
 class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
     var product = Product()
+    var isUpdateImage : Bool = false
     let alertController : UIAlertController? = nil
     @IBOutlet weak var UI_productimage: UIImageView!
     @IBOutlet weak var UI_productname: UITextField!
@@ -21,24 +23,48 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
     let processor = ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 300)) >> RoundCornerImageProcessor(cornerRadius: 50)
     @IBAction func btn_confirm(_ sender: CornerButton) {
         
-        let alertController = UIAlertController(title: nil, message: "Sửa sản phẩm thành công\n\n", preferredStyle: .alert)
-        
-        
-        
-      
-        
-        self.present(alertController, animated: true, completion: nil)
-      
-        try! AppUtils.getInstance().write {
-            product.namechanged = UI_productname.text
-            product.expiretime = timetemp
-            product.daybefore = Int(UI_daybefore.text!)!
-            product.des = UI_description.text
-            AppUtils.getInstance().add(product, update: true)
-         
+        if(isUpdateImage == true)
+        {
+            
+            AppUtils.getProductViewModel().uploadImage(image: UI_productimage.image!, barcode: (product.producttype_id?.barcode!)!, productid: product._id!)
+            {
+              
+               
+                self.updateinformation()
+           
+            }
         }
+        else{
+           
+            updateinformation()
+        }
+    
+       
+    }
+    func updateinformation(){
+     
+        
+        
+        
+            let realm = try! Realm()
+            try! realm.write {
+                if(isUpdateImage == true)
+                {
+                       product.imagechanged =  AppUtils.getProductViewModel().tempupdateimage
+                }
+               
+                product.namechanged = UI_productname.text
+                product.expiretime = timetemp
+                product.daybefore = Int(UI_daybefore.text!)!
+                product.des = UI_description.text
+                realm.add(product, update: true)
+            }
+        
+            
+        
         AppUtils.getProductViewModel().updateProduct(product: product){
-               self.performSegue(withIdentifier: "unwindToDetail", sender: self)
+            
+          self.performSegue(withIdentifier: "unwindToDetail", sender: self)
         }
     }
     var timetemp : Double = 0.0
@@ -139,7 +165,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
     }
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        print("chon anh")
+      
         
         let alert:UIAlertController=UIAlertController(title: "Chọn hình ảnh", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
@@ -302,6 +328,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            isUpdateImage = true
            UI_productimage.kf.base.image = AppUtils.resize(image: image)
           
         }
@@ -341,7 +368,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
         if let destinationViewController = segue.destination as? ProductDetailViewController {
             let data:[String: Product] = ["date": product]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadReceive"), object: nil, userInfo: data)
-
+           
             destinationViewController.product = product
             destinationViewController.updateUI()
         }

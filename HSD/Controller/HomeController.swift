@@ -208,10 +208,21 @@ class HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.UI_barcode.text = itemsection[indexPath.section][indexPath.row].producttype_id?.barcode
         let processor = ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 300)) >> RoundCornerImageProcessor(cornerRadius: 50)
+        if (self.itemsection[indexPath.section][indexPath.row].imagechanged!.hasPrefix("file:///"))
+        {
+            print("khong co anh")
+            cell.UI_image.kf.setImage(with: URL(string: self.itemsection[indexPath.section][indexPath.row].imagechanged!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+                
+                
+            })
+        }
+        else
+        {
         cell.UI_image.kf.setImage(with: URL(string: AppUtils.BASE_URL_IMAGE + self.itemsection[indexPath.section][indexPath.row].imagechanged!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
            
             
         })
+        }
         cell.UI_image.contentMode = .scaleAspectFit
         cell.UI_image.clipsToBounds = true
         cell.UI_expired.text =  AppUtils.dayDifference(from :Double(itemsection[indexPath.section][indexPath.row].expiretime))

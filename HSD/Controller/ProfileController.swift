@@ -16,9 +16,10 @@ class ProfileController: UIViewController {
     @IBOutlet weak var UI_type: UILabel!
     @IBOutlet weak var UI_username: UILabel!
     
+    @IBOutlet weak var UI_view_notification: UIView!
     @IBOutlet weak var UI_phone: UILabel!
     @IBOutlet weak var UI_product_warning: UILabel!
-
+    
     
     @IBOutlet weak var UI_product_safe: UILabel!
     @IBOutlet weak var UI_product_expired: UILabel!
@@ -47,8 +48,16 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(timeTapped(tapGestureRecognizer:)))
+        UI_view_notification.isUserInteractionEnabled = true
+         UI_view_notification.addGestureRecognizer(tapGestureRecognizer)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadprofile(_:)), name: NSNotification.Name(rawValue: "ReloadProfile"), object: nil)
         // Do any additional setup after loading the view.
+    }
+    @objc func timeTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+          self.performSegue(withIdentifier: "goto_time", sender: self)
+     
     }
     @objc func reloadprofile(_ notification: NSNotification) {
         //        if let foo = notification_list.first(where: {$0.productid == (notification.userInfo!["notification"] as? Notification)?.productid}) {

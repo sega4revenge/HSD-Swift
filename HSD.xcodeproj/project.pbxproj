@@ -13,7 +13,6 @@
 		8A05AE1120D799B80000391B /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05AE1020D799B80000391B /* NotificationViewCell.swift */; };
 		8A0A40F720E1461900CD4EF6 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0A40F620E1461900CD4EF6 /* EditViewController.swift */; };
 		8A0D380520DFF69B00A93FF0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D380420DFF69B00A93FF0 /* Media.xcassets */; };
-		8A0D380720DFF8CD00A93FF0 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D380620DFF8CC00A93FF0 /* loading.gif */; };
 		8A100B4E20C4E53300BF1A03 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100B4D20C4E53300BF1A03 /* ProductViewModel.swift */; };
 		8A100B5020C4E60500BF1A03 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100B4F20C4E60500BF1A03 /* Response.swift */; };
 		8A100B5220C51F0D00BF1A03 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100B5120C51F0D00BF1A03 /* UserViewModel.swift */; };
@@ -39,6 +38,7 @@
 		8A82860020DB610700CEE741 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8285FF20DB610700CEE741 /* Setting.swift */; };
 		8A82991420D9EC4B00BDC5F5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82991320D9EC4B00BDC5F5 /* Group.swift */; };
 		8A82991A20DA403800BDC5F5 /* ListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82991920DA403800BDC5F5 /* ListTransform.swift */; };
+		8AA132A120E4BD2B00ED7BD9 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA132A020E4BD2B00ED7BD9 /* AlarmViewController.swift */; };
 		8ABF80A620DC9E15008DB441 /* LBXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80A520DC9E15008DB441 /* LBXScanViewController.swift */; };
 		8ABF80A820DC9EB7008DB441 /* LBXScanViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80A720DC9EB7008DB441 /* LBXScanViewStyle.swift */; };
 		8ABF80AA20DC9F5F008DB441 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8ABF80A920DC9F5F008DB441 /* CodeScan.bundle */; };
@@ -47,6 +47,7 @@
 		8ABF80B220DCA0B7008DB441 /* LBXScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80B120DCA0B7008DB441 /* LBXScanView.swift */; };
 		8ABF80B420DCA0DE008DB441 /* LBXScanLineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80B320DCA0DE008DB441 /* LBXScanLineAnimation.swift */; };
 		8ABF80B620DCA0F1008DB441 /* LBXScanNetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80B520DCA0F1008DB441 /* LBXScanNetAnimation.swift */; };
+		8ABFC4B620E3655000EEAC72 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABFC4B520E3655000EEAC72 /* Result.swift */; };
 		8AE9220E20E09B0800B50704 /* scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AE9220D20E09B0700B50704 /* scream.mp3 */; };
 		8AE9221220E0EC0000B50704 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE9221120E0EC0000B50704 /* DatePickerDialog.swift */; };
 		8AF10D1720BE7E0D002CA202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF10D1620BE7E0D002CA202 /* AppDelegate.swift */; };
@@ -83,7 +84,6 @@
 		8A05AE1020D799B80000391B /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		8A0A40F620E1461900CD4EF6 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8A0D380420DFF69B00A93FF0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		8A0D380620DFF8CC00A93FF0 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		8A100B4D20C4E53300BF1A03 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		8A100B4F20C4E60500BF1A03 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		8A100B5120C51F0D00BF1A03 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		8A8285FF20DB610700CEE741 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		8A82991320D9EC4B00BDC5F5 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		8A82991920DA403800BDC5F5 /* ListTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransform.swift; sourceTree = "<group>"; };
+		8AA132A020E4BD2B00ED7BD9 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		8ABF80A520DC9E15008DB441 /* LBXScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanViewController.swift; sourceTree = "<group>"; };
 		8ABF80A720DC9EB7008DB441 /* LBXScanViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanViewStyle.swift; sourceTree = "<group>"; };
 		8ABF80A920DC9F5F008DB441 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 		8ABF80B120DCA0B7008DB441 /* LBXScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanView.swift; sourceTree = "<group>"; };
 		8ABF80B320DCA0DE008DB441 /* LBXScanLineAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanLineAnimation.swift; sourceTree = "<group>"; };
 		8ABF80B520DCA0F1008DB441 /* LBXScanNetAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanNetAnimation.swift; sourceTree = "<group>"; };
+		8ABFC4B520E3655000EEAC72 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8AE9220D20E09B0700B50704 /* scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scream.mp3; sourceTree = "<group>"; };
 		8AE9221120E0EC0000B50704 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		8AF10D1320BE7E0D002CA202 /* HSD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				8A19265220C100720046FFB0 /* Product.swift */,
+				8ABFC4B520E3655000EEAC72 /* Result.swift */,
 				8A2157A220C4308F009CAE9E /* Model.swift */,
 				8A100B4F20C4E60500BF1A03 /* Response.swift */,
 				8A100B5320C520B100BF1A03 /* User.swift */,
@@ -239,6 +242,7 @@
 				8A19264F20C0E6FF0046FFB0 /* TabBarController.swift */,
 				8A2157A020C42A4B009CAE9E /* ProductDetailViewController.swift */,
 				8A0A40F620E1461900CD4EF6 /* EditViewController.swift */,
+				8AA132A020E4BD2B00ED7BD9 /* AlarmViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				8AE9220D20E09B0700B50704 /* scream.mp3 */,
-				8A0D380620DFF8CC00A93FF0 /* loading.gif */,
 				8AF10D1520BE7E0D002CA202 /* HSD */,
 				8AF10D2A20BE7E0E002CA202 /* HSDTests */,
 				8AF10D3520BE7E0F002CA202 /* HSDUITests */,
@@ -408,6 +411,11 @@
 				TargetAttributes = {
 					8AF10D1220BE7E0D002CA202 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					8AF10D2620BE7E0E002CA202 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -445,7 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE9220E20E09B0800B50704 /* scream.mp3 in Resources */,
-				8A0D380720DFF8CD00A93FF0 /* loading.gif in Resources */,
 				8A0D380520DFF69B00A93FF0 /* Media.xcassets in Resources */,
 				8ABF80AA20DC9F5F008DB441 /* CodeScan.bundle in Resources */,
 				8AF10D2120BE7E0E002CA202 /* LaunchScreen.storyboard in Resources */,
@@ -524,14 +531,11 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/HFSwipeView/HFSwipeView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/TinyLog/TinyLog.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -546,14 +550,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HFSwipeView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TinyLog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +571,7 @@
 			files = (
 				8A2157A320C4308F009CAE9E /* Model.swift in Sources */,
 				8A25678F20BFD6790072B15F /* RegisterController.swift in Sources */,
+				8AA132A120E4BD2B00ED7BD9 /* AlarmViewController.swift in Sources */,
 				8A01071C20DE7D6400648829 /* RequestObject.swift in Sources */,
 				8A5127A520E1CB66005E477F /* ISPoint.swift in Sources */,
 				8A19264520C0E2680046FFB0 /* CreateController.swift in Sources */,
@@ -584,6 +586,7 @@
 				8ABF80B220DCA0B7008DB441 /* LBXScanView.swift in Sources */,
 				8ABF80A620DC9E15008DB441 /* LBXScanViewController.swift in Sources */,
 				8A19264720C0E2770046FFB0 /* NotificationController.swift in Sources */,
+				8ABFC4B620E3655000EEAC72 /* Result.swift in Sources */,
 				8A7EF77920C648DA00DFAF0A /* ProductType.swift in Sources */,
 				8ABF80A820DC9EB7008DB441 /* LBXScanViewStyle.swift in Sources */,
 				8AF10D1920BE7E0D002CA202 /* LoginController.swift in Sources */,
@@ -781,6 +784,7 @@
 			baseConfigurationReference = 64FFF69CE0297DFA7DCBCCBE /* Pods-HSD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 287YL398QC;
 				INFOPLIST_FILE = HSD/Info.plist;
@@ -791,6 +795,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.finger.HSD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -801,6 +806,7 @@
 			baseConfigurationReference = DA98D5FA603F00614F83D64C /* Pods-HSD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 287YL398QC;
 				INFOPLIST_FILE = HSD/Info.plist;
@@ -811,6 +817,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.finger.HSD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

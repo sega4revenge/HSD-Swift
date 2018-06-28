@@ -147,6 +147,7 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
                     "detailproduct" : product_temp.des!,
                     "iduser" :    AppUtils.getUserID()
                 ]
+                
                 // You can change your image name here, i use NSURL image and convert into string
                 let fileName = UI_barcode.text! + "-" + String(NSDate().timeIntervalSince1970)
                 Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -157,9 +158,9 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
                             multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                         }
                     }
-                }, to:AppUtils.BASE_URL + "product/add-product")
+                }, to:AppUtils.BASE_URL + "product/add-product"){
                     
-                { (result) in
+                 (result) in
                     switch result {
                     case .success(let upload, _, _):
                         let alertController = UIAlertController(title: nil, message: "Vui lòng đợi\n\n", preferredStyle: .alert)

@@ -28,7 +28,7 @@ class AppUtils : NSObject  {
         return a
     }()
     static var notificationCenter: UNUserNotificationCenter?
-    static let BASE_URL = "https://hsdvn.ga:7070/"
+    static let BASE_URL = "https://hansudung.com/"
     static let NORMAL = 0
     static let FACEBOOK = 1
     static let GOOGLE = 2
@@ -88,7 +88,8 @@ class AppUtils : NSObject  {
     }
     static func removeNotification(){
         
-         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["HSD"])
+         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
     static func clearCache(){
         
@@ -295,8 +296,8 @@ class AppUtils : NSObject  {
     static func loadEventsExpired() -> Int {
         print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!)
             print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!)
-        let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getEndLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
-        
+        let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
+        print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000)
 //        let eventStore = EKEventStore()
 //        let ekcalendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
 //
@@ -312,6 +313,10 @@ class AppUtils : NSObject  {
 //            }
 //        }
         return result.count
+    }
+    static func removeScheduleRepeat(hour : Int , minute : Int){
+        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(hour)-\(minute)"])
     }
     static func setScheduleRepeat(hour : Int , minute : Int){
 
@@ -661,7 +666,7 @@ class AppUtils : NSObject  {
         
     }
     static func getUser() -> User {
-        var result = AppUtils.getInstance().objects(User.self)
+        let result = AppUtils.getInstance().objects(User.self)
         return result.first!
     }
     //========================================================================== image function

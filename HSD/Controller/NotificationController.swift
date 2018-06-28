@@ -60,7 +60,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
 //
 //        }
         print("dang them")
-      
+        print( (notification.userInfo!["notification"] as? NotificationModel)!.productid!)
         var vitri : Int
         if let index = notification_list.index(where: {$0.productid == (notification.userInfo!["notification"] as? NotificationModel)!.productid}) {
             print(index)
@@ -73,7 +73,15 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
             self.UI_tableview.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
             self.UI_tableview.endUpdates()
         }
-     
+        else
+        {
+                self.notification_list.insert((notification.userInfo!["notification"] as? NotificationModel)!, at: 0)
+            self.UI_tableview.beginUpdates()
+            
+         
+            self.UI_tableview.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+            self.UI_tableview.endUpdates()
+        }
         
         
     }

@@ -20,7 +20,7 @@ class User: Object,Mappable {
     @objc dynamic  var create_at: Double = 0.0
     var listnotification = List<NotificationModel>()
     var listgroup = List<Group>()
-     @objc dynamic  var setting: Setting?
+    @objc dynamic  var setting : Setting? = Setting()
     @objc dynamic var type_login : Int = 0
     required convenience init?(map: Map) {
         self.init()

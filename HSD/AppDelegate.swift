@@ -19,26 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Perform any operations when the user disconnects from app here.
         // ...
     }
-    @objc func calendarDayDidChange()
-    {
-        
-        AppUtils.setScheduleRepeat(hour: 8,minute: 10)
-       
-        
-    }
-    func application(_ application: UIApplication,
-                     performFetchWithCompletionHandler completionHandler:
-        @escaping (UIBackgroundFetchResult) -> Void) {
-        // Check for new data.
-       
-            AppUtils.setScheduleRepeat(hour: 0,minute: 10)
-            completionHandler(.newData)
-      
-    }
+
+//    func application(_ application: UIApplication,
+//                     performFetchWithCompletionHandler completionHandler:
+//        @escaping (UIBackgroundFetchResult) -> Void) {
+//        // Check for new data.
+//
+//            AppUtils.setScheduleRepeat(hour: 0,minute: 10)
+//            completionHandler(.newData)
+//
+//    }
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-         UIApplication.shared.setMinimumBackgroundFetchInterval(60)
+//         UIApplication.shared.setMinimumBackgroundFetchInterval(60)
         UNUserNotificationCenter.current().delegate = self
          (self.window!.rootViewController as! UINavigationController).navigationBar.setValue(true, forKey: "hidesShadow")
        
@@ -198,6 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         if(notification.request.content.categoryIdentifier == "midnight")
         {
                 print("loi ok 123")
+                AppUtils.setScheduleRepeat(hour: 0,minute: 10)
+            
                 AppUtils.loadEventsToNotification()
               completionHandler([])
         }

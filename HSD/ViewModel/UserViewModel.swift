@@ -39,8 +39,7 @@ class UserViewModel: NSObject {
         Alamofire.request(AppUtils.BASE_URL + "register-android", method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<Response>) in
             
             self.response = response.result.value
-              print(response.result.value!)
-            print(response.result.value!.user)
+       
             complete()
         }
     }

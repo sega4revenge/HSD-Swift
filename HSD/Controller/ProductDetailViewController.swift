@@ -84,10 +84,23 @@ class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImageP
         
         UI_barcode.text = (product?.producttype_id?.barcode)!
         let processor = ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 300)) >> RoundCornerImageProcessor(cornerRadius: 50)
-        UI_productimage.kf.setImage(with: URL(string: AppUtils.BASE_URL_IMAGE + (product?.imagechanged)!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
-            
-            
-        })
+     
+        if (product?.imagechanged?.hasPrefix("file:///"))!
+        {
+            print("khong co anh")
+            UI_productimage.kf.setImage(with: URL(string: product!.imagechanged!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+                
+                
+            })
+        }
+        else
+        {
+            UI_productimage.kf.setImage(with: URL(string: AppUtils.BASE_URL_IMAGE + (product?.imagechanged)!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+                
+                
+            })
+        }
+       
        
         UI_productimage.contentMode = .scaleAspectFill
         UI_productimage.clipsToBounds = true
@@ -255,6 +268,8 @@ class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImageP
     }
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        let data:[String: Product] = ["date": product!]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadReceive"), object: nil, userInfo: data)
       
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

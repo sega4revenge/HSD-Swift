@@ -16,7 +16,7 @@ class Setting: Object,Mappable {
     @objc dynamic  var _id : String?
     @objc dynamic var timezone: Int = 0
     @objc dynamic  var user_id: String?
-    var frame_time = List<Double>()
+    var frame_time = List<String>()
    
     required convenience init?(map: Map) {
         self.init()

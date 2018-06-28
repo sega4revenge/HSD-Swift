@@ -8,7 +8,6 @@ target 'HSD' do
   use_frameworks!
 
   pod 'Alamofire'
-#  pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'RealmSwift'
   pod 'ReachabilitySwift'
@@ -18,6 +17,6 @@ target 'HSD' do
   pod 'GoogleSignIn'
   pod 'AlamofireObjectMapper'
   pod 'Toaster'
-  pod 'HFSwipeView'
+
 end
 
