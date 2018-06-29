@@ -16,7 +16,10 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         self.delegate = self
         UITabBar.appearance().layer.borderWidth = 0.0
         UITabBar.appearance().clipsToBounds = true
-        
+        let result = AppUtils.getInstance().objects(NotificationModel.self).sorted(byKeyPath: "create_at", ascending: false)
+        let vc = self.viewControllers![2]
+        print(vc)
+        vc.tabBarItem.badgeValue = "\(result.count)"
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.

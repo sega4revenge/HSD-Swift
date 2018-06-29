@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 import EventKit
-import Reachability
+
 import UserNotifications
 import Kingfisher
 import Alamofire
@@ -65,27 +65,7 @@ class AppUtils : NSObject  {
     }
     //==========================================================================   time function
     
-    static func removeCalendar(){
-        let calendars = eventStore.calendars(for: .event)
-        
-        for calendar in calendars {
-            if calendar.title == "HSD" {
-                
-                do{
-                    try  eventStore.removeCalendar(calendar, commit: true)
-                    AppUtils.storeFirstTime(first: true)
-                    
-                    
-                }
-                catch
-                {
-                    print("error")
-                }
-                
-                
-            }
-        }
-    }
+
     static func removeNotification(){
         
          UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -229,7 +209,7 @@ class AppUtils : NSObject  {
               
                 if(result2.count==0)
                 {
-                    print("chua ton tai dau")
+                 
                     let notification = NotificationModel()
                     notification._id = objectId()
                     notification.content = result[index].namechanged! + " đã hết hạn vào hôm nay"
@@ -245,7 +225,7 @@ class AppUtils : NSObject  {
                                                     userInfo: data)
                 }
                 else{
-                  print("da ton tai dau")
+                
                     
                     try! AppUtils.getInstance().write {
                         result2[0].content = result[index].namechanged! + " đã hết hạn vào hôm nay"
@@ -294,10 +274,10 @@ class AppUtils : NSObject  {
     }
     
     static func loadEventsExpired() -> Int {
-        print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!)
-            print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!)
+       
+        
         let   result = AppUtils.getInstance().objects(Product.self).filter("expiretime < \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000) AND expiretime >= \(calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000)").sorted(byKeyPath: "expiretime", ascending: false)
-        print(calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000)
+      
 //        let eventStore = EKEventStore()
 //        let ekcalendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
 //
@@ -316,7 +296,7 @@ class AppUtils : NSObject  {
     }
     static func removeScheduleRepeat(hour : Int , minute : Int){
         
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(hour)-\(minute)"])
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(hour):\(minute)"])
     }
     static func setScheduleRepeat(hour : Int , minute : Int){
 
@@ -332,6 +312,23 @@ class AppUtils : NSObject  {
  
         
     }
+    static func reloadNotification(){
+        let listnotification = AppUtils.getInstance().objects(User.self).first!.setting?.frame_time
+        if((listnotification?.count)!>0)
+        {
+            for index in 0...(listnotification?.count)! - 1 {
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "HH:mm"
+                let date = dateFormatter.date(from: (listnotification![index]))
+                let hour = AppUtils.calendar.component(.hour, from:  date! )
+                let minute = AppUtils.calendar.component(.minute, from: date!)
+                UNUserNotificationCenter.current().scheduleNotificationRepeat(hour: hour, minute: minute)
+            }
+        }
+       
+        
+    }
     static func addProduct(product : Product,complete: @escaping DownloadComplete){
         try! AppUtils.getInstance().write {
             
@@ -339,30 +336,31 @@ class AppUtils : NSObject  {
         
             
             AppUtils.getInstance().add(product, update: true)
-            let date = Date(timeIntervalSince1970: product.expiretime/1000)
-            
-            let endDate =    calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.getEndLocalDate(date: date))!
-            
-            let startDate =
-                calendar.date(byAdding: .hour, value: -timezone, to:calendar.date(byAdding: .day, value: -product.daybefore, to:AppUtils.getStartLocalDate(date: date))!)!
-           
-            let event = EKEvent(eventStore: eventStore)
-            event.isAllDay = true
-            event.location = product._id
-            event.title = product.namechanged
-            event.startDate = startDate
-            event.endDate = endDate
-            event.notes = product.des
-            event.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
-            event.url = URL(string: product.imagechanged!)
-            do {
-                
-                try eventStore.save(event, span: .thisEvent, commit: true)
-                
-            } catch {
-                print("Error occurred exist")
-            }
-            if(AppUtils.countDay(from: product.expiretime) == 1){
+//            let date = Date(timeIntervalSince1970: product.expiretime/1000)
+//
+//            let endDate =    calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.getEndLocalDate(date: date))!
+//
+//            let startDate =
+//                calendar.date(byAdding: .hour, value: -timezone, to:calendar.date(byAdding: .day, value: -product.daybefore, to:AppUtils.getStartLocalDate(date: date))!)!
+//
+//            let event = EKEvent(eventStore: eventStore)
+//            event.isAllDay = true
+//            event.location = product._id
+//            event.title = product.namechanged
+//            event.startDate = startDate
+//            event.endDate = endDate
+//            event.notes = product.des
+//            event.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
+//            event.url = URL(string: product.imagechanged!)
+//            do {
+//
+//                try eventStore.save(event, span: .thisEvent, commit: true)
+//
+//            } catch {
+//                print("Error occurred exist")
+//            }
+            if(product.expiretime < calendar.date(byAdding: .hour, value: 0, to:AppUtils.getStartLocalDate(date: Date()))!.timeIntervalSince1970*1000 && product.expiretime >= calendar.date(byAdding: .hour, value: 0, to:AppUtils.calendar.date(byAdding: .day, value: -1, to:AppUtils.getStartLocalDate(date: Date()))!)!.timeIntervalSince1970*1000 ){
+                print("het han roi may")
                 let notification = NotificationModel()
                 notification.content = "\(product.namechanged!) đã hết hạn vào hôm nay"
                 notification.type = 0
@@ -371,7 +369,7 @@ class AppUtils : NSObject  {
                 notification.image = product.imagechanged
                 AppUtils.getInstance().add(notification, update: true)
             }
-            AppUtils.setScheduleRepeat(hour: 00, minute: 00)
+            AppUtils.reloadNotification()
             complete()
             
         }
@@ -384,21 +382,169 @@ class AppUtils : NSObject  {
         }
        return converted
     }
-    static func setReminder(from product : List<Product>,viewcontroller : UIViewController,complete: @escaping DownloadComplete) {
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+//    static func setReminder(from product : List<Product>,viewcontroller : UIViewController,complete: @escaping DownloadComplete) {
+////        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+////
+////            guard error == nil else {
+////                //Display Error.. Handle Error.. etc..
+////                return
+////            }
+////
+////            if granted {
+////                //Do stuff here..
+////
+////            }
+////            else
+////            {
+////                let alertController = UIAlertController (title: "Cảnh báo", message: "Ứng dụng không thể thông báo hạn sử dụng nếu không được cấp quyền truy cập thông báo", preferredStyle: .alert)
+////
+////                let settingsAction = UIAlertAction(title: "Đi đến cài đặt", style: .default) { (_) -> Void in
+////                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+////                        return
+////                    }
+////                    if UIApplication.shared.canOpenURL(settingsUrl) {
+////                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+////
+////                        })
+////                    }
+////                }
+////                alertController.addAction(settingsAction)
+////                DispatchQueue.main.sync {
+////                    viewcontroller.present(alertController, animated: true, completion: nil)
+////                }
+////
+////            }
+////
+////
+////
+////        }
+////
+//        //Register for RemoteNotifications. Your Remote Notifications can display alerts now :)
 //
-//            guard error == nil else {
-//                //Display Error.. Handle Error.. etc..
-//                return
+//        eventStore.requestAccess(to: EKEntityType.event) { (granted, error) -> Void in
+//
+//            if let e = error {
+//                print("Error \(e.localizedDescription)")
+//
 //            }
 //
 //            if granted {
-//                //Do stuff here..
 //
+//
+//                print("access granted")
+//                let calendars = eventStore.calendars(for: .event)
+//                var isCreate :Bool = false
+//                for calendar in calendars {
+//                    if calendar.title == "HSD" {
+//                        isCreate = true
+//                        print("da tao")
+//                        if(AppUtils.getCalendarID()==""||AppUtils.getFirstTime()==true)
+//                        {
+//                            do{
+//                                try  eventStore.removeCalendar(calendar, commit: true)
+//                                let newCalendar = EKCalendar(for :EKEntityType.event, eventStore:eventStore)
+//
+//                                newCalendar.title="HSD"
+//                                newCalendar.source = eventStore.defaultCalendarForNewEvents?.source
+//                                AppUtils.storeCalendarID(id: newCalendar.calendarIdentifier)
+//                                try eventStore.saveCalendar(newCalendar, commit:true)
+//
+//
+//
+//                            }
+//                            catch
+//                            {
+//                                print("error")
+//                            }
+//                        }
+//
+//
+//
+//                    }
+//                }
+//                if(isCreate == false)
+//                {
+//                    print("chua tao")
+//                    let newCalendar = EKCalendar(for :EKEntityType.event, eventStore:eventStore)
+//
+//                    newCalendar.title="HSD"
+//                    newCalendar.source = eventStore.defaultCalendarForNewEvents?.source
+//                    AppUtils.storeCalendarID(id: newCalendar.calendarIdentifier)
+//                    do{
+//
+//                        try eventStore.saveCalendar(newCalendar, commit:true)
+//                    }
+//                    catch {
+//                        print("error")
+//                    }
+//                }
+//
+//
+//
+//
+//
+//                if(product.count > 0)
+//                {
+//
+//
+//
+//                    for index in 0...product.count - 1 {
+//
+//                        let date = Date(timeIntervalSince1970: product[index].expiretime/1000)
+//
+//                        let endDate =    calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.getEndLocalDate(date: date))!
+//
+//                        let startDate =
+//                            calendar.date(byAdding: .hour, value: -timezone, to:calendar.date(byAdding: .day, value: -product[index].daybefore, to:AppUtils.getStartLocalDate(date: date))!)!
+//                        var eventAlreadyExists = false
+//                        let event = EKEvent(eventStore: eventStore)
+//                        event.isAllDay = true
+//                        event.location = product[index]._id
+//                        event.title = product[index].namechanged
+//                        event.startDate = startDate
+//                        event.endDate = endDate
+//                        event.notes = product[index].des
+//                        event.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
+//                        event.url = URL(string: product[index].imagechanged!)
+//
+//                        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
+//                        let existingEvents = eventStore.events(matching: predicate)
+//                        for singleEvent in existingEvents {
+//                            if singleEvent.location == product[index]._id {
+//                                eventAlreadyExists = true
+//                                singleEvent.title = product[index].namechanged
+//                                singleEvent.startDate = startDate
+//                                singleEvent.endDate = endDate
+//                                singleEvent.notes = product[index].des
+//                                singleEvent.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
+//                                do {
+//
+//                                    try eventStore.save(singleEvent, span: .thisEvent, commit: true)
+//
+//                                } catch {
+//                                    print("Error occurred exist")
+//                                }
+//                                break
+//                            }
+//                        }
+//                        if !eventAlreadyExists {
+//                            do {
+//                                try eventStore.save(event, span: .thisEvent)
+//                                //                                self.notificationCenter!.scheduleNotification(at: date, product: product[index],hour: 6,minute: 0)
+//
+//
+//                            } catch {
+//                                print("Error occurred")
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                complete()
 //            }
 //            else
 //            {
-//                let alertController = UIAlertController (title: "Cảnh báo", message: "Ứng dụng không thể thông báo hạn sử dụng nếu không được cấp quyền truy cập thông báo", preferredStyle: .alert)
+//                let alertController = UIAlertController (title: "Cảnh báo", message: "Ứng dụng không thể hoạt động nếu không được cấp quyền truy cập lịch", preferredStyle: .alert)
 //
 //                let settingsAction = UIAlertAction(title: "Đi đến cài đặt", style: .default) { (_) -> Void in
 //                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
@@ -414,157 +560,9 @@ class AppUtils : NSObject  {
 //                DispatchQueue.main.sync {
 //                    viewcontroller.present(alertController, animated: true, completion: nil)
 //                }
-//
 //            }
-//
-//
-//
 //        }
-//
-        //Register for RemoteNotifications. Your Remote Notifications can display alerts now :)
-        
-        eventStore.requestAccess(to: EKEntityType.event) { (granted, error) -> Void in
-            
-            if let e = error {
-                print("Error \(e.localizedDescription)")
-                
-            }
-            
-            if granted {
-                
-                
-                print("access granted")
-                let calendars = eventStore.calendars(for: .event)
-                var isCreate :Bool = false
-                for calendar in calendars {
-                    if calendar.title == "HSD" {
-                        isCreate = true
-                        print("da tao")
-                        if(AppUtils.getCalendarID()==""||AppUtils.getFirstTime()==true)
-                        {
-                            do{
-                                try  eventStore.removeCalendar(calendar, commit: true)
-                                let newCalendar = EKCalendar(for :EKEntityType.event, eventStore:eventStore)
-                                
-                                newCalendar.title="HSD"
-                                newCalendar.source = eventStore.defaultCalendarForNewEvents?.source
-                                AppUtils.storeCalendarID(id: newCalendar.calendarIdentifier)
-                                try eventStore.saveCalendar(newCalendar, commit:true)
-                                
-                                
-                                
-                            }
-                            catch
-                            {
-                                print("error")
-                            }
-                        }
-                        
-                        
-                        
-                    }
-                }
-                if(isCreate == false)
-                {
-                    print("chua tao")
-                    let newCalendar = EKCalendar(for :EKEntityType.event, eventStore:eventStore)
-                    
-                    newCalendar.title="HSD"
-                    newCalendar.source = eventStore.defaultCalendarForNewEvents?.source
-                    AppUtils.storeCalendarID(id: newCalendar.calendarIdentifier)
-                    do{
-                        
-                        try eventStore.saveCalendar(newCalendar, commit:true)
-                    }
-                    catch {
-                        print("error")
-                    }
-                }
-                
-                
-                
-                
-            
-                if(product.count > 0)
-                {
-                    
-                    
-                    
-                    for index in 0...product.count - 1 {
-                        
-                        let date = Date(timeIntervalSince1970: product[index].expiretime/1000)
-                        
-                        let endDate =    calendar.date(byAdding: .hour, value: -timezone, to:AppUtils.getEndLocalDate(date: date))!
-                        
-                        let startDate =
-                            calendar.date(byAdding: .hour, value: -timezone, to:calendar.date(byAdding: .day, value: -product[index].daybefore, to:AppUtils.getStartLocalDate(date: date))!)!
-                        var eventAlreadyExists = false
-                        let event = EKEvent(eventStore: eventStore)
-                        event.isAllDay = true
-                        event.location = product[index]._id
-                        event.title = product[index].namechanged
-                        event.startDate = startDate
-                        event.endDate = endDate
-                        event.notes = product[index].des
-                        event.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
-                        event.url = URL(string: product[index].imagechanged!)
-                        
-                        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
-                        let existingEvents = eventStore.events(matching: predicate)
-                        for singleEvent in existingEvents {
-                            if singleEvent.location == product[index]._id {
-                                eventAlreadyExists = true
-                                singleEvent.title = product[index].namechanged
-                                singleEvent.startDate = startDate
-                                singleEvent.endDate = endDate
-                                singleEvent.notes = product[index].des
-                                singleEvent.calendar = eventStore.calendar(withIdentifier: AppUtils.getCalendarID())
-                                do {
-                                    
-                                    try eventStore.save(singleEvent, span: .thisEvent, commit: true)
-                                    
-                                } catch {
-                                    print("Error occurred exist")
-                                }
-                                break
-                            }
-                        }
-                        if !eventAlreadyExists {
-                            do {
-                                try eventStore.save(event, span: .thisEvent)
-                                //                                self.notificationCenter!.scheduleNotification(at: date, product: product[index],hour: 6,minute: 0)
-                                
-                                
-                            } catch {
-                                print("Error occurred")
-                            }
-                        }
-                    }
-                }
-                
-                complete()
-            }
-            else
-            {
-                let alertController = UIAlertController (title: "Cảnh báo", message: "Ứng dụng không thể hoạt động nếu không được cấp quyền truy cập lịch", preferredStyle: .alert)
-                
-                let settingsAction = UIAlertAction(title: "Đi đến cài đặt", style: .default) { (_) -> Void in
-                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                        return
-                    }
-                    if UIApplication.shared.canOpenURL(settingsUrl) {
-                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                            
-                        })
-                    }
-                }
-                alertController.addAction(settingsAction)
-                DispatchQueue.main.sync {
-                    viewcontroller.present(alertController, animated: true, completion: nil)
-                }
-            }
-        }
-    }
+//    }
    
     @objc func runcode(){
         

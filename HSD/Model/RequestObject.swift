@@ -6,21 +6,20 @@
 //  Copyright © 2018 Finger. All rights reserved.
 //
 
-import ObjectMapper
+
 import RealmSwift
-class RequestObject: Object,Mappable {
+class RequestObject: Object {
     
     
     
     
     @objc dynamic  var _id : String?
     @objc dynamic var url: String?
-    @objc dynamic  var params: String?
-   
+    @objc dynamic var type : String?
+    var params : List<String>? = List<String>()
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
+    
+
     
     override static func primaryKey() -> String? {
         return "_id"
@@ -28,9 +27,5 @@ class RequestObject: Object,Mappable {
     
     
     
-    func mapping(map: Map) {
-        _id <- map["_id"]
-      
-        
-    }
+
 }

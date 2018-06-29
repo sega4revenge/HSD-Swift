@@ -10,7 +10,7 @@
 import FacebookCore
 import FacebookLogin
 import UIKit
-import Toaster
+
 import Firebase
 import RealmSwift
 import GoogleSignIn

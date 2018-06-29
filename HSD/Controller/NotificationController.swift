@@ -13,7 +13,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notification_list.count
     }
-    
+    var product : Product?=nil
     @IBOutlet weak var UI_noti_no: UIView!
     @IBOutlet weak var UI_tableview: UITableView!
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -48,6 +48,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
       
      
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotification(_:)), name: NSNotification.Name(rawValue: "notification_update"), object: nil)
+          NotificationCenter.default.addObserver(self, selector: #selector(deleteNotification(_:)), name: NSNotification.Name(rawValue: "notification_delete"), object: nil)
          reload()
         UI_tableview.delegate = self
         UI_tableview.dataSource = self
@@ -82,8 +83,43 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
             self.UI_tableview.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
             self.UI_tableview.endUpdates()
         }
+          self.tabBarItem.badgeValue = "\(notification_list.count)"
         
+    }
+    @objc func deleteNotification(_ notification: NSNotification) {
+        //        if let foo = notification_list.first(where: {$0.productid == (notification.userInfo!["notification"] as? Notification)?.productid}) {
+        //            // do something with foo
+        //        } else {
+        //
+        //        }
+        print("dang them")
+        print( (notification.userInfo!["notification"] as? NotificationModel)!.productid!)
+        var vitri : Int
+        if let index = notification_list.index(where: {$0.productid == (notification.userInfo!["notification"] as? NotificationModel)!.productid}) {
+            print(index)
+            vitri = index
+            notification_list.remove(at: vitri)
+           
+            self.UI_tableview.beginUpdates()
+            
+            self.UI_tableview.deleteRows(at: [IndexPath.init(row: vitri, section: 0)], with: .automatic)
+          
+            self.UI_tableview.endUpdates()
+        }
+        else
+        {
+         
+        }
+        self.tabBarItem.badgeValue = "\(notification_list.count)"
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //        print(itemsection[indexPath.section][indexPath.row].productname!)
+        
+        product = AppUtils.getInstance().objects(Product.self).filter("_id = '\(notification_list[indexPath.row].productid!)'").first
+      
+        self.performSegue(withIdentifier: "goto_detail", sender: self)
     }
     func reload(){
         let result = AppUtils.getInstance().objects(NotificationModel.self).sorted(byKeyPath: "create_at", ascending: false)
@@ -94,7 +130,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
                  UI_tableview.isHidden = false
            
             notification_list = result.toArray(ofType: NotificationModel.self)
-            
+          
         }
         else{
               UI_noti_no.isHidden = false
@@ -109,6 +145,7 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "Thông báo"
+          self.navigationController?.isNavigationBarHidden = true
         
     }
     
@@ -121,5 +158,10 @@ class NotificationController: UIViewController,UITableViewDelegate,UITableViewDa
      // Pass the selected object to the new view controller.
      }
      */
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("bat dau")
+        if let destinationViewController = segue.destination as? ProductDetailViewController {
+            destinationViewController.product = product
+        }
+    }
 }

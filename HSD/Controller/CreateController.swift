@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import Alamofire
 import Kingfisher
-import Toaster
+
 class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,UITextViewDelegate {
     var product_temp = Product()
     @IBOutlet weak var UI_barcode: UITextField!
@@ -224,7 +224,13 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
         //Use action.title
     }
     @IBAction func UI_cancel(_ sender: CornerButton) {
-        
+        UI_barcode.text = ""
+        UI_description.text = ""
+        UI_expiredtime.text = ""
+        UI_productname.text = ""
+        UI_hint.text = "Sử dụng camera để scan tự động mã barcode hoặc nhập barcode để tìm kiếm"
+        UI_productimage.image = UIImage(named:"barcode")
+          UI_hint.textColor = UIColor.black
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {

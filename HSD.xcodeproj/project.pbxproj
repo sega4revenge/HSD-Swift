@@ -35,10 +35,19 @@
 		8A7EF77920C648DA00DFAF0A /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EF77820C648DA00DFAF0A /* ProductType.swift */; };
 		8A7EF77D20C679C100DFAF0A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EF77C20C679C100DFAF0A /* PaddingLabel.swift */; };
 		8A81059320C5958200C328D8 /* CornerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81059220C5958200C328D8 /* CornerTextField.swift */; };
+		8A81FA9A20E5337F00E4AD6E /* Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81FA9920E5337F00E4AD6E /* Params.swift */; };
 		8A82860020DB610700CEE741 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8285FF20DB610700CEE741 /* Setting.swift */; };
 		8A82991420D9EC4B00BDC5F5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82991320D9EC4B00BDC5F5 /* Group.swift */; };
 		8A82991A20DA403800BDC5F5 /* ListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82991920DA403800BDC5F5 /* ListTransform.swift */; };
 		8AA132A120E4BD2B00ED7BD9 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA132A020E4BD2B00ED7BD9 /* AlarmViewController.swift */; };
+		8AAA619C20E60B3F00B38397 /* UILabel+Highlighting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA619B20E60B3F00B38397 /* UILabel+Highlighting.swift */; };
+		8AAA619E20E626E700B38397 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA619D20E626E700B38397 /* CollapsibleTableViewHeader.swift */; };
+		8AAA61A020E628E700B38397 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA619F20E628E700B38397 /* Section.swift */; };
+		8AABE43E20E5CB6D00A2E59B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE43D20E5CB6D00A2E59B /* Reachability.swift */; };
+		8AABE44020E5CBDC00A2E59B /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE43F20E5CBDC00A2E59B /* ToastWindow.swift */; };
+		8AABE44220E5CBEF00A2E59B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE44120E5CBEF00A2E59B /* ToastView.swift */; };
+		8AABE44420E5CC0700A2E59B /* ToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE44320E5CC0700A2E59B /* ToastCenter.swift */; };
+		8AABE44620E5CC1200A2E59B /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE44520E5CC1200A2E59B /* Toast.swift */; };
 		8ABF80A620DC9E15008DB441 /* LBXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80A520DC9E15008DB441 /* LBXScanViewController.swift */; };
 		8ABF80A820DC9EB7008DB441 /* LBXScanViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF80A720DC9EB7008DB441 /* LBXScanViewStyle.swift */; };
 		8ABF80AA20DC9F5F008DB441 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8ABF80A920DC9F5F008DB441 /* CodeScan.bundle */; };
@@ -109,10 +118,19 @@
 		8A7EF77820C648DA00DFAF0A /* ProductType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
 		8A7EF77C20C679C100DFAF0A /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		8A81059220C5958200C328D8 /* CornerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTextField.swift; sourceTree = "<group>"; };
+		8A81FA9920E5337F00E4AD6E /* Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Params.swift; sourceTree = "<group>"; };
 		8A8285FF20DB610700CEE741 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		8A82991320D9EC4B00BDC5F5 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		8A82991920DA403800BDC5F5 /* ListTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransform.swift; sourceTree = "<group>"; };
 		8AA132A020E4BD2B00ED7BD9 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		8AAA619B20E60B3F00B38397 /* UILabel+Highlighting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Highlighting.swift"; sourceTree = "<group>"; };
+		8AAA619D20E626E700B38397 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
+		8AAA619F20E628E700B38397 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		8AABE43D20E5CB6D00A2E59B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8AABE43F20E5CBDC00A2E59B /* ToastWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		8AABE44120E5CBEF00A2E59B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		8AABE44320E5CC0700A2E59B /* ToastCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastCenter.swift; sourceTree = "<group>"; };
+		8AABE44520E5CC1200A2E59B /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8ABF80A520DC9E15008DB441 /* LBXScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanViewController.swift; sourceTree = "<group>"; };
 		8ABF80A720DC9EB7008DB441 /* LBXScanViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBXScanViewStyle.swift; sourceTree = "<group>"; };
 		8ABF80A920DC9F5F008DB441 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
@@ -200,6 +218,10 @@
 				8ABF80B520DCA0F1008DB441 /* LBXScanNetAnimation.swift */,
 				8ABF80AB20DC9FE4008DB441 /* LBXScanWrapper.swift */,
 				8A5127A220E1CB4E005E477F /* ISTimeline.swift */,
+				8AABE43F20E5CBDC00A2E59B /* ToastWindow.swift */,
+				8AABE44320E5CC0700A2E59B /* ToastCenter.swift */,
+				8AABE44120E5CBEF00A2E59B /* ToastView.swift */,
+				8AABE44520E5CC1200A2E59B /* Toast.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -217,6 +239,8 @@
 				8A82991320D9EC4B00BDC5F5 /* Group.swift */,
 				8A8285FF20DB610700CEE741 /* Setting.swift */,
 				8A01071B20DE7D6400648829 /* RequestObject.swift */,
+				8A81FA9920E5337F00E4AD6E /* Params.swift */,
+				8AAA619F20E628E700B38397 /* Section.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,6 +250,7 @@
 			children = (
 				8A21579E20C41F49009CAE9E /* AppUtils.swift */,
 				8A5F841820D802320057985E /* ReachabilityManager.swift */,
+				8AABE43D20E5CB6D00A2E59B /* Reachability.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -325,6 +350,8 @@
 				8A05AE1020D799B80000391B /* NotificationViewCell.swift */,
 				8A7EF77C20C679C100DFAF0A /* PaddingLabel.swift */,
 				8AE9221120E0EC0000B50704 /* DatePickerDialog.swift */,
+				8AAA619B20E60B3F00B38397 /* UILabel+Highlighting.swift */,
+				8AAA619D20E626E700B38397 /* CollapsibleTableViewHeader.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -531,12 +558,11 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Highlighter/Highlighter.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -550,12 +576,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlighter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -569,7 +594,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AAA61A020E628E700B38397 /* Section.swift in Sources */,
 				8A2157A320C4308F009CAE9E /* Model.swift in Sources */,
+				8AABE44620E5CC1200A2E59B /* Toast.swift in Sources */,
 				8A25678F20BFD6790072B15F /* RegisterController.swift in Sources */,
 				8AA132A120E4BD2B00ED7BD9 /* AlarmViewController.swift in Sources */,
 				8A01071C20DE7D6400648829 /* RequestObject.swift in Sources */,
@@ -591,15 +618,20 @@
 				8ABF80A820DC9EB7008DB441 /* LBXScanViewStyle.swift in Sources */,
 				8AF10D1920BE7E0D002CA202 /* LoginController.swift in Sources */,
 				8A21579F20C41F49009CAE9E /* AppUtils.swift in Sources */,
+				8AAA619E20E626E700B38397 /* CollapsibleTableViewHeader.swift in Sources */,
 				8A100B5220C51F0D00BF1A03 /* UserViewModel.swift in Sources */,
 				8AF10D1720BE7E0D002CA202 /* AppDelegate.swift in Sources */,
 				8A2157A120C42A4B009CAE9E /* ProductDetailViewController.swift in Sources */,
 				8ABF80B620DCA0F1008DB441 /* LBXScanNetAnimation.swift in Sources */,
 				8AFDC8BB20C107CE00605FC3 /* ProductTableViewCell.swift in Sources */,
 				8A81059320C5958200C328D8 /* CornerTextField.swift in Sources */,
+				8AABE44420E5CC0700A2E59B /* ToastCenter.swift in Sources */,
+				8AABE44220E5CBEF00A2E59B /* ToastView.swift in Sources */,
 				8A716DDE20D39FE800571C34 /* UNUserNotificationCenter.swift in Sources */,
+				8AABE44020E5CBDC00A2E59B /* ToastWindow.swift in Sources */,
 				8A19265320C100720046FFB0 /* Product.swift in Sources */,
 				8A82860020DB610700CEE741 /* Setting.swift in Sources */,
+				8A81FA9A20E5337F00E4AD6E /* Params.swift in Sources */,
 				8A19264320C0E25A0046FFB0 /* HomeController.swift in Sources */,
 				8A82991420D9EC4B00BDC5F5 /* Group.swift in Sources */,
 				8A100B4E20C4E53300BF1A03 /* ProductViewModel.swift in Sources */,
@@ -607,8 +639,10 @@
 				8A7EF77D20C679C100DFAF0A /* PaddingLabel.swift in Sources */,
 				8ABF80AE20DCA005008DB441 /* LBXPermissions.swift in Sources */,
 				8A19264920C0E2840046FFB0 /* ProfileController.swift in Sources */,
+				8AABE43E20E5CB6D00A2E59B /* Reachability.swift in Sources */,
 				8A100B5420C520B100BF1A03 /* User.swift in Sources */,
 				8ABF80AC20DC9FE4008DB441 /* LBXScanWrapper.swift in Sources */,
+				8AAA619C20E60B3F00B38397 /* UILabel+Highlighting.swift in Sources */,
 				8A5F841920D802320057985E /* ReachabilityManager.swift in Sources */,
 				8A05AE1120D799B80000391B /* NotificationViewCell.swift in Sources */,
 			);
@@ -788,7 +822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 287YL398QC;
 				INFOPLIST_FILE = HSD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,7 +844,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 287YL398QC;
 				INFOPLIST_FILE = HSD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

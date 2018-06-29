@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import HSD
+
 
 class HSDTests: XCTestCase {
     

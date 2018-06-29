@@ -34,7 +34,7 @@ class ProfileController: UIViewController {
                 
                 self.UI_frametime.alpha = 1.0
                 self.UI_frametime.isHidden = false
-                
+                AppUtils.reloadNotification()
             })
         } else {
           
@@ -42,6 +42,8 @@ class ProfileController: UIViewController {
               
                 self.UI_frametime.alpha = 0.0
                 self.UI_frametime.isHidden = true
+                AppUtils.removeAllNotification()
+                
             })
         }
     }
@@ -85,9 +87,9 @@ class ProfileController: UIViewController {
         UI_username.text = "Tô Tử Siêu"
        
         let viewcontroller = tabBarController?.viewControllers![0] as! HomeController
-        UI_product_expired.text = String(viewcontroller.itemsection[0].count)
-        UI_product_warning.text =  String(viewcontroller.itemsection[1].count)
-        UI_product_safe.text =  String(viewcontroller.itemsection[2].count)
+        UI_product_expired.text = String(viewcontroller.itemsection[0].items.count)
+        UI_product_warning.text =  String(viewcontroller.itemsection[1].items.count)
+        UI_product_safe.text =  String(viewcontroller.itemsection[2].items.count)
         UI_top_view.layer.cornerRadius = 10
         UI_bottom_view.layer.cornerRadius = 10
         let processor = RoundCornerImageProcessor(cornerRadius: 40)
@@ -109,8 +111,10 @@ class ProfileController: UIViewController {
           
         }
         AppUtils.clearCache()
-        AppUtils.removeCalendar()
+     
         AppUtils.removeNotification()
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+
         self.navigationController?.isNavigationBarHidden = true
         self.performSegue(withIdentifier: "logout", sender: self)
     }

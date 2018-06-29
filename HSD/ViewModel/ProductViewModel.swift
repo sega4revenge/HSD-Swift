@@ -69,19 +69,26 @@ class ProductViewModel: NSObject {
                     let a = RequestObject()
                     a.url = url
                     a._id = url + idproduct
+                    a.type = idproduct
+                    a.params?.append(idproduct)
+                     a.params?.append(iduser)
                     
-                    if  UserDefaults.standard.object(forKey: "listrequest") == nil {
-                        var b = Dictionary<String, Parameters>()
-                        b.updateValue(parameters, forKey: "\(url + idproduct)")
-                        UserDefaults.standard.set(b, forKey: "listrequest")
-                        //  Doesn't exist
-                    }
-                    else{
-                        var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
-                        
-                        b.updateValue(parameters, forKey: "\(url + idproduct)")
-                        UserDefaults.standard.set(b, forKey: "listrequest")
-                    }
+                    
+                    
+                    
+                    //
+//                    if  UserDefaults.standard.object(forKey: "listrequest") == nil {
+//                        var b = Dictionary<String, Parameters>()
+//                        b.updateValue(parameters, forKey: "\(url + idproduct)")
+//                        UserDefaults.standard.set(b, forKey: "listrequest")
+//                        //  Doesn't exist
+//                    }
+//                    else{
+//                        var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
+//
+//                        b.updateValue(parameters, forKey: "\(url + idproduct)")
+//                        UserDefaults.standard.set(b, forKey: "listrequest")
+//                    }
                     AppUtils.getInstance().add(a, update: true)
                     
                     
@@ -156,27 +163,29 @@ class ProductViewModel: NSObject {
                                         let a = RequestObject()
                                         a.url = url
                                         a._id = url + productid + barcode
-                                        print("\(url + productid + barcode)")
-                                        print(fileURL.absoluteString)
-                                        let parameters = [
-                                            "image" : fileName,
-                                            "idproduct" : productid
-                                            
-                                        ]
-                                        if  UserDefaults.standard.object(forKey: "listrequest") == nil {
-                                            var b = Dictionary<String, Parameters>()
-                                            b.updateValue(parameters, forKey: "\(url + productid + barcode)")
-                                            UserDefaults.standard.set(b, forKey: "listrequest")
-                                            UserDefaults.standard.synchronize()
-                                            //  Doesn't exist
-                                        }
-                                        else{
-                                            var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
-                                            
-                                            b.updateValue(parameters, forKey: "\(url + productid + barcode)")
-                                            UserDefaults.standard.set(b, forKey: "listrequest")
-                                            UserDefaults.standard.synchronize()
-                                        }
+                                        a.type = productid
+                                    
+//                                        let parameters = [
+//                                            "image" : fileName,
+//                                            "idproduct" : productid
+//
+//                                        ]
+                                        a.params?.append(fileName)
+                                        a.params?.append(productid)
+//                                        if  UserDefaults.standard.object(forKey: "listrequest") == nil {
+//                                            var b = Dictionary<String, Parameters>()
+//                                            b.updateValue(parameters, forKey: "\(url + productid + barcode)")
+//                                            UserDefaults.standard.set(b, forKey: "listrequest")
+//                                            UserDefaults.standard.synchronize()
+//                                            //  Doesn't exist
+//                                        }
+//                                        else{
+//                                            var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
+//
+//                                            b.updateValue(parameters, forKey: "\(url + productid + barcode)")
+//                                            UserDefaults.standard.set(b, forKey: "listrequest")
+//                                            UserDefaults.standard.synchronize()
+//                                        }
                                         AppUtils.getInstance().add(a, update: true)
                                       
                                         
@@ -241,19 +250,12 @@ class ProductViewModel: NSObject {
                     let a = RequestObject()
                     a.url = url
                     a._id = url + product._id!
-                    
-                    if  UserDefaults.standard.object(forKey: "listrequest") == nil {
-                        var b = Dictionary<String, Parameters>()
-                        b.updateValue(parameters, forKey: "\(url + product._id!)")
-                        UserDefaults.standard.set(b, forKey: "listrequest")
-                        //  Doesn't exist
-                    }
-                    else{
-                        var b = UserDefaults.standard.object(forKey: "listrequest") as! Dictionary<String, Parameters>
-                        
-                        b.updateValue(parameters, forKey: "\(url + product._id!)")
-                        UserDefaults.standard.set(b, forKey: "listrequest")
-                    }
+                    a.type = product._id
+                    a.params?.append(product._id!)
+                    a.params?.append(product.namechanged!)
+                    a.params?.append(String(product.expiretime))
+                    a.params?.append(product.des!)
+                    a.params?.append(String(product.daybefore))
                     AppUtils.getInstance().add(a, update: true)
                     
                     

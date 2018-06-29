@@ -57,14 +57,17 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
                 product.expiretime = timetemp
                 product.daybefore = Int(UI_daybefore.text!)!
                 product.des = UI_description.text
+                
                 realm.add(product, update: true)
             }
         
             
         
         AppUtils.getProductViewModel().updateProduct(product: product){
-            
+            print("abc")
+          
           self.performSegue(withIdentifier: "unwindToDetail", sender: self)
+          AppUtils.reloadNotification()
         }
     }
     var timetemp : Double = 0.0

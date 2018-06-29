@@ -7,14 +7,26 @@
 //
 
 import UIKit
-import Toaster
 class RegisterController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var UI_register: UIView!
     @IBOutlet weak var tf_phone: UITextField!
     @IBOutlet weak var tf_pass: UITextField!
     @IBOutlet weak var tf_repass: UITextField!
+    let alertController = UIAlertController(title: nil, message: "Đang đăng ký\n\n", preferredStyle: .alert)
     
     
+    
+    let spinnerIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    func prepareDialog(){
+        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
+        spinnerIndicator.color = UIColor.black
+        spinnerIndicator.startAnimating()
+        
+        alertController.view.addSubview(spinnerIndicator)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
     @IBAction func btn_register(_ sender: CornerButton) {
         if(tf_phone.text == "")
         {
@@ -49,41 +61,12 @@ class RegisterController: UIViewController,UITextFieldDelegate {
             toast.show()
         }
         else{
-            
+            prepareDialog()
             AppUtils.getUserViewModel().registerUser(phone : tf_phone.text! , password: tf_pass.text!,type: AppUtils.NORMAL){
                 switch (AppUtils.getUserViewModel().response?.status){
                 case 200 :
-                
-                    AppUtils.storeUser(user: (AppUtils.getUserViewModel().response?.user)!)
-                    AppUtils.setReminder(from: (AppUtils.getUserViewModel().response?.user?.listgroup[0].listproduct)!,viewcontroller: self)
-                        {
-                            
-                            
-                            
-                            
-                            
-                            try! AppUtils.getInstance().write {
-                                
-                                AppUtils.getInstance().deleteAll()
-                                
-                                AppUtils.getInstance().add(AppUtils.getProductViewModel()._productList, update: true)
-                                
-                                
-                                OperationQueue.main.addOperation {
-                                    [weak self] in
-                                    self?.performSegue(withIdentifier: "goto_main", sender: self)
-                                }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                            }
-                            
-                            
-                        }
+                    print("abc")
+                    self.getData(user: (AppUtils.getUserViewModel().response?.user!)!)
                      
                         
                         
@@ -93,12 +76,12 @@ class RegisterController: UIViewController,UITextFieldDelegate {
                 case nil :
                     ToastCenter.default.cancelAll()
                     let toast = Toast(text: "Kết nối đến server bị lỗi", duration: Delay.short)
-                    
+                       self.alertController.dismiss(animated: true, completion: nil)
                     toast.show()
                 default :
                     ToastCenter.default.cancelAll()
-                    let toast = Toast(text: "Đăng ký không thành công", duration: Delay.short)
-                    
+                    let toast = Toast(text: "Số này đã được dùng", duration: Delay.short)
+                       self.alertController.dismiss(animated: true, completion: nil)
                     toast.show()
                     
                     
@@ -108,7 +91,37 @@ class RegisterController: UIViewController,UITextFieldDelegate {
             
         }
     }
-    
+    func getData(user : User){
+        self.alertController.message = "Đăng ký thành công\n\n"
+        AppUtils.storeUser(user: user)
+        
+        //        AppUtils.setReminder(from: user.listgroup[0].listproduct,viewcontroller: self)
+        //            {
+        //
+        //
+        //
+        //            }
+        
+        
+        try! AppUtils.getInstance().write {
+            
+            AppUtils.getInstance().deleteAll()
+            
+            AppUtils.getInstance().add(user, update: true)
+            
+            
+            AppUtils.removeAllNotification()
+            self.alertController.dismiss(animated: true, completion: {() -> Void in     self.performSegue(withIdentifier: "goto_main", sender: self)
+                
+                
+                
+                
+                
+                
+            })
+        }
+        
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case tf_phone:

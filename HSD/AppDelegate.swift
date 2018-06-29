@@ -192,13 +192,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         if(notification.request.content.categoryIdentifier == "midnight")
         {
                 print("loi ok 123")
-                AppUtils.setScheduleRepeat(hour: 0,minute: 10)
+                AppUtils.reloadNotification()
             
                 AppUtils.loadEventsToNotification()
               completionHandler([])
         }
         else if(notification.request.content.categoryIdentifier == "report")
             {
+                 AppUtils.loadEventsToNotification()
 //                let noti = NotificationModel()
 //                noti._id = AppUtils.objectId()
 //                noti.type = 1

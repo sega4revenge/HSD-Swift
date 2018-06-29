@@ -10,13 +10,12 @@ target 'HSD' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'RealmSwift'
-  pod 'ReachabilitySwift'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'AlamofireObjectMapper'
-  pod 'Toaster'
+  pod 'Highlighter'
 
 end
 

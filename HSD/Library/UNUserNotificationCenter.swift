@@ -52,10 +52,10 @@ extension UNUserNotificationCenter {
         content.title = "Tổng hợp"
         content.sound = UNNotificationSound.default()
       content.categoryIdentifier = "report"
-        content.body = "Hôm nay có \(AppUtils.loadEvents()) sắp hết hạn và \(AppUtils.loadEventsExpired()) sản phẩm đã hết hạn"
+        content.body = "Hôm nay có \(AppUtils.loadEvents()) sản phẩm sắp hết hạn và \(AppUtils.loadEventsExpired()) sản phẩm đã hết hạn"
   
-        let request = UNNotificationRequest(identifier: "\(hour)-\(minute) ", content: content, trigger: trigger)
-       UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(hour)-\(minute)"])
+        let request = UNNotificationRequest(identifier: "\(hour):\(minute) ", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(hour):\(minute)"])
                 UNUserNotificationCenter.current().add(request) {(error) in
                     if let error = error {
                         print(" We had an error: \(error)")
