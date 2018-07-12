@@ -134,9 +134,11 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
             do
             {
                 try input?.device.lockForConfiguration()
-                
+                let w = UIScreen.main.bounds.width
+                let h = UIScreen.main.bounds.height
                 input?.device.focusMode = AVCaptureDevice.FocusMode.continuousAutoFocus
-                
+                input?.device.focusPointOfInterest =  CGPoint(x: w / 2, y: h / 2)
+                input?.device.exposurePointOfInterest =  CGPoint(x: w / 2, y: h / 2)
                 input?.device.unlockForConfiguration()
             }
             catch let error as NSError {

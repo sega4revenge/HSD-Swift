@@ -91,7 +91,12 @@ class ReachabilityManager: NSObject {
                                 if(response.response?.statusCode == 200)
                                 {
                                     let realm = try! Realm()
-                                    try! FileManager.default.removeItem(at : fileURL)
+                                    do{
+                                         try FileManager.default.removeItem(at : fileURL)
+                                    }catch{
+                                        print(error)
+                                    }
+                                
                                     try! realm.write {
                                         let producttemp =  realm.objects(Product.self).filter(" _id = '\(param2)' ")
                                         if(producttemp.count != 0)

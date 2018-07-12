@@ -32,6 +32,7 @@
 		8A5F841920D802320057985E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F841820D802320057985E /* ReachabilityManager.swift */; };
 		8A716DDE20D39FE800571C34 /* UNUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A716DDD20D39FE800571C34 /* UNUserNotificationCenter.swift */; };
 		8A72E0B620D0062000D7B1CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A72E0B520D0062000D7B1CF /* GoogleService-Info.plist */; };
+		8A7626B620F79FD600B1AE71 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A7626B420F79FD600B1AE71 /* Main.strings */; };
 		8A7EF77920C648DA00DFAF0A /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EF77820C648DA00DFAF0A /* ProductType.swift */; };
 		8A7EF77D20C679C100DFAF0A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EF77C20C679C100DFAF0A /* PaddingLabel.swift */; };
 		8A81059320C5958200C328D8 /* CornerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81059220C5958200C328D8 /* CornerTextField.swift */; };
@@ -115,6 +116,9 @@
 		8A5F841820D802320057985E /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		8A716DDD20D39FE800571C34 /* UNUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNUserNotificationCenter.swift; sourceTree = "<group>"; };
 		8A72E0B520D0062000D7B1CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8A7626A320F7924B00B1AE71 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8A7626B520F79FD600B1AE71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = HSD/Base.lproj/Main.strings; sourceTree = "<group>"; };
+		8A7626B720F79FDC00B1AE71 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = HSD/vi.lproj/Main.strings; sourceTree = "<group>"; };
 		8A7EF77820C648DA00DFAF0A /* ProductType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
 		8A7EF77C20C679C100DFAF0A /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		8A81059220C5958200C328D8 /* CornerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTextField.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		8AF10D0A20BE7E0D002CA202 = {
 			isa = PBXGroup;
 			children = (
+				8A7626B420F79FD600B1AE71 /* Main.strings */,
 				8AE9220D20E09B0700B50704 /* scream.mp3 */,
 				8AF10D1520BE7E0D002CA202 /* HSD */,
 				8AF10D2A20BE7E0E002CA202 /* HSDTests */,
@@ -304,11 +309,11 @@
 				8A19265120C0FFD70046FFB0 /* Model */,
 				8A25678D20BFD64F0072B15F /* Controller */,
 				8AF10D4620BE8534002CA202 /* CustomView */,
-				8AF10D4420BE7E6B002CA202 /* Layout */,
 				8AF10D1620BE7E0D002CA202 /* AppDelegate.swift */,
 				8A0D380420DFF69B00A93FF0 /* Media.xcassets */,
 				8AF10D1F20BE7E0E002CA202 /* LaunchScreen.storyboard */,
 				8ABF80A920DC9F5F008DB441 /* CodeScan.bundle */,
+				8AF10D1A20BE7E0D002CA202 /* Main.storyboard */,
 				8AF10D2220BE7E0E002CA202 /* Info.plist */,
 				8A72E0B520D0062000D7B1CF /* GoogleService-Info.plist */,
 			);
@@ -331,14 +336,6 @@
 				8AF10D3820BE7E0F002CA202 /* Info.plist */,
 			);
 			path = HSDUITests;
-			sourceTree = "<group>";
-		};
-		8AF10D4420BE7E6B002CA202 /* Layout */ = {
-			isa = PBXGroup;
-			children = (
-				8AF10D1A20BE7E0D002CA202 /* Main.storyboard */,
-			);
-			path = Layout;
 			sourceTree = "<group>";
 		};
 		8AF10D4620BE8534002CA202 /* CustomView */ = {
@@ -483,6 +480,7 @@
 				8A0D380520DFF69B00A93FF0 /* Media.xcassets in Resources */,
 				8ABF80AA20DC9F5F008DB441 /* CodeScan.bundle in Resources */,
 				8AF10D2120BE7E0E002CA202 /* LaunchScreen.storyboard in Resources */,
+				8A7626B620F79FD600B1AE71 /* Main.strings in Resources */,
 				8A72E0B620D0062000D7B1CF /* GoogleService-Info.plist in Resources */,
 				8AF10D1C20BE7E0D002CA202 /* Main.storyboard in Resources */,
 			);
@@ -680,6 +678,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8A7626B420F79FD600B1AE71 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A7626B520F79FD600B1AE71 /* Base */,
+				8A7626B720F79FDC00B1AE71 /* vi */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
 		8AF10D1A20BE7E0D002CA202 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -692,6 +699,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8AF10D2020BE7E0E002CA202 /* Base */,
+				8A7626A320F7924B00B1AE71 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -703,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -763,6 +772,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -62,6 +62,7 @@ class HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         itemsection = [
+            
             Section(name: "Hết hạn", items: []),
             Section(name: "Sắp hết hạn", items: []),
             Section(name: "An Toàn", items: [])
@@ -190,24 +191,33 @@ class HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
             
             try! AppUtils.getInstance().write {
-                let objectsToDelete = AppUtils.getInstance().objects(Product.self).filter(" _id = '\(self.itemsection[indexPath.section].items[indexPath.row]._id!)'")
-                print("da lay")
-                AppUtils.getInstance().delete(objectsToDelete)
+               
+           
+             
                   let NotificationToDelete = AppUtils.getInstance().objects(NotificationModel.self).filter(" productid = '\(self.itemsection[indexPath.section].items[indexPath.row]._id!)'")
-                     AppUtils.getInstance().delete(NotificationToDelete)
-                let data:[String: NotificationModel] = ["notification":  NotificationToDelete[0]]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification_update"), object: nil,
-                                                userInfo: data)
+         
+                if(NotificationToDelete.count != 0)
+                {
+                    let data:[String: NotificationModel] = ["notification":  NotificationToDelete[0]]
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification_update"), object: nil,
+                                                    userInfo: data)
+                    AppUtils.getInstance().delete(NotificationToDelete)
+                }
+              
+                let objectsToDelete = AppUtils.getInstance().objects(Product.self).filter(" _id = '\(self.itemsection[indexPath.section].items[indexPath.row]._id!)'")
+                
+                AppUtils.getInstance().delete(objectsToDelete)
+                
             }
             if(AppUtils.getInstance().objects(Product.self).count == 0)
             {
                 self.containerView.isHidden = true
                 self.UI_message.isHidden = false
             }
-            
+            AppUtils.reloadNotification()
             self.itemsection[indexPath.section].items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-             AppUtils.reloadNotification()
+          
             // and then just remove the set with
             
             
@@ -305,7 +315,7 @@ class HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         })
         }
-        cell.UI_image.contentMode = .scaleAspectFit
+        cell.UI_image.contentMode = .scaleAspectFill
         cell.UI_image.clipsToBounds = true
         cell.UI_expired.text =  AppUtils.dayDifference(from :Double(data.expiretime))
         cell.UI_expired.layer.masksToBounds = true
@@ -328,8 +338,8 @@ class HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             cell.UI_name.textColor = UIColor.init(red: 54/255, green: 156/255, blue: 18/255, alpha: 1)
         }
-        highlightlabel(label: cell.UI_name,coretext: data.namechanged!,highlighttext: searchstring)
-        highlightlabel(label: cell.UI_barcode,coretext: (data.producttype_id?.barcode)!,highlighttext: searchstring)
+        highlightlabel(label: cell.UI_name,coretext: data.namechanged!.lowercased(),highlighttext: searchstring.lowercased())
+        highlightlabel(label: cell.UI_barcode,coretext: (data.producttype_id?.barcode)!.lowercased(),highlighttext: searchstring.lowercased())
 //        if(indexPath.row == itemsection[indexPath.section].count-1)
 //        {
 //            DispatchQueue.main.async {

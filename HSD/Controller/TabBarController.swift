@@ -14,8 +14,8 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:false)
         self.delegate = self
-        UITabBar.appearance().layer.borderWidth = 0.0
-        UITabBar.appearance().clipsToBounds = true
+//        UITabBar.appearance().layer.borderWidth = 0.0
+//        UITabBar.appearance().clipsToBounds = true
         let result = AppUtils.getInstance().objects(NotificationModel.self).sorted(byKeyPath: "create_at", ascending: false)
         let vc = self.viewControllers![2]
         print(vc)

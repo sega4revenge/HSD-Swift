@@ -15,8 +15,8 @@ import Firebase
 import RealmSwift
 import GoogleSignIn
 class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate,GIDSignInDelegate {
-    let alertController = UIAlertController(title: nil, message: "Đang đăng nhập\n\n", preferredStyle: .alert)
-    
+    let alertController = UIAlertController(title: nil, message: "\("signin".localized(tableName: "Main"))\n\n", preferredStyle: .alert)
+  
     
     
     let spinnerIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -33,14 +33,14 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
             switch loginResult {
             case .failed(let error):
                 self.alertController.dismiss(animated: true, completion: nil)
-                let toast = Toast(text: "Kết nối đến server bị lỗi", duration: Delay.short)
+                let toast = Toast(text: "\("networkerror".localized(tableName: "Main") )", duration: Delay.short)
                 toast.show()
                 print(error)
             case .cancelled:
                 self.alertController.dismiss(animated: true, completion: nil)
-                let toast = Toast(text: "Người dùng từ chối đăng nhập", duration: Delay.short)
+                let toast = Toast(text: "\("userdecline".localized(tableName: "Main") )", duration: Delay.short)
                 toast.show()
-                print("User cancelled login.")
+               
             case .success( _, _, _):
                 let connection = GraphRequestConnection()
                 connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"], accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod(rawValue: "GET")!, apiVersion: "2.8")) { httpResponse, result in
@@ -52,7 +52,7 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
                         
                     case .failed(let error):
                         self.alertController.dismiss(animated: true, completion: nil)
-                        let toast = Toast(text: "Kết nối đến server bị lỗi", duration: Delay.short)
+                        let toast = Toast(text: "\("networkerror".localized(tableName: "Main") )", duration: Delay.short)
                         toast.show()
                         print("Graph Request Failed: \(error)")
                     }
@@ -67,7 +67,7 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
         GIDSignIn.sharedInstance().signIn()
     }
     func prepareDialog(){
-        self.alertController.message = "Đang đăng nhập\n\n"
+      
         spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
         spinnerIndicator.color = UIColor.black
         spinnerIndicator.startAnimating()
@@ -78,7 +78,7 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
         
     }
     func getData(user : User){
-        self.alertController.message = "Đăng nhập thành công\n\n"
+        self.alertController.message = "\("signinok".localized(tableName: "Main") )\n\n"
         AppUtils.storeUser(user: user)
 
 //        AppUtils.setReminder(from: user.listgroup[0].listproduct,viewcontroller: self)
@@ -120,12 +120,12 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
                   
             case nil :
                 ToastCenter.default.cancelAll()
-                let toast = Toast(text: "Kết nối đến server bị lỗi", duration: Delay.short)
+                let toast = Toast(text: "\("networkerror".localized(tableName: "Main"))", duration: Delay.short)
                 self.alertController.dismiss(animated: true, completion: nil)
                 toast.show()
             default :
                 ToastCenter.default.cancelAll()
-                let toast = Toast(text: "Đăng ký không thành công", duration: Delay.short)
+                let toast = Toast(text: "\("signinok".localized(tableName: "Main"))", duration: Delay.short)
                 self.alertController.dismiss(animated: true, completion: nil)
                 toast.show()
                 
@@ -161,13 +161,14 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func btn_Login(_ sender: Any) {
+        print("\("inputphone".localized(tableName: "Main"))\n\n")
         if(tf_phone.text == "")
         {
             
             tf_phone.layer.borderWidth = 2
             tf_phone.layer.borderColor = UIColor.red.cgColor
             ToastCenter.default.cancelAll()
-            let toast = Toast(text: "Vui lòng nhập số điện thoại", duration: Delay.short)
+            let toast = Toast(text: "inputphone".localized(tableName: "Main"), duration: Delay.short)
             
             toast.show()
         }
@@ -176,7 +177,7 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
             tf_password.layer.borderWidth = 2
             tf_password.layer.borderColor = UIColor.red.cgColor
             ToastCenter.default.cancelAll()
-            let toast = Toast(text: "Vui lòng nhập mật khẩu", duration: Delay.short)
+            let toast = Toast(text: "inputpassword".localized(tableName: "Main"), duration: Delay.short)
             
             toast.show()
         }
@@ -188,12 +189,12 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
                     
                 case nil :
                     ToastCenter.default.cancelAll()
-                    let toast = Toast(text: "Kết nối đến server bị lỗi", duration: Delay.short)
+                    let toast = Toast(text: "\("networkerror".localized(tableName: "Main"))", duration: Delay.short)
                        self.alertController.dismiss(animated: true, completion: nil)
                     toast.show()
                 default :
                     ToastCenter.default.cancelAll()
-                    let toast = Toast(text: "Sai tên đăng nhập hoặc mật khẩu", duration: Delay.short)
+                    let toast = Toast(text: "\("wrongpassword".localized(tableName: "Main"))", duration: Delay.short)
                        self.alertController.dismiss(animated: true, completion: nil)
                     toast.show()
                     
@@ -221,8 +222,8 @@ class LoginController: UIViewController,UITextFieldDelegate, GIDSignInUIDelegate
     override func viewDidLoad() {
         
         super.viewDidLoad()
-      
         
+        print()
             GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
             GIDSignIn.sharedInstance().delegate=self
             GIDSignIn.sharedInstance().uiDelegate=self

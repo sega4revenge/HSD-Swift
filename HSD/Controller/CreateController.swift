@@ -11,7 +11,7 @@ import Photos
 import Alamofire
 import Kingfisher
 
-class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,UITextViewDelegate {
+class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
     var product_temp = Product()
     @IBOutlet weak var UI_barcode: UITextField!
     @IBOutlet weak var UI_description: UITextView!
@@ -33,7 +33,7 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
     var dateFormate = Bool()
     @IBOutlet weak var UI_expiredtime: UITextField!
     var picker:UIImagePickerController?=UIImagePickerController()
-    var popover:UIPopoverPresentationControllerDelegate?=nil
+
     var barcode_temp : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         UI_productimage.isUserInteractionEnabled = true
         UI_productimage.addGestureRecognizer(tapGestureRecognizer)
-          UI_productimage.contentMode = .scaleAspectFill
+        UI_productimage.contentMode = .scaleAspectFill
         UI_barcode.delegate = self
         UI_productname.delegate = self
         UI_description.delegate = self
@@ -225,11 +225,11 @@ class CreateController: UIViewController,UITextFieldDelegate,UIAlertViewDelegate
     }
     @IBAction func UI_cancel(_ sender: CornerButton) {
         UI_barcode.text = ""
-        UI_description.text = ""
+        UI_description.text = "Mô tả chi tiết sản phẩm"
         UI_expiredtime.text = ""
         UI_productname.text = ""
         UI_hint.text = "Sử dụng camera để scan tự động mã barcode hoặc nhập barcode để tìm kiếm"
-        UI_productimage.image = UIImage(named:"barcode")
+        UI_productimage.image = UIImage(named:"no-image")
           UI_hint.textColor = UIColor.black
     }
     func textViewDidBeginEditing(_ textView: UITextView) {

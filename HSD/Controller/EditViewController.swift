@@ -105,10 +105,21 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
         
         UI_barcode.text = (product.producttype_id?.barcode)!
       
-        UI_productimage.kf.setImage(with: URL(string: AppUtils.BASE_URL_IMAGE + (product.imagechanged)!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
-            
-            
-        })
+        if (product.imagechanged?.hasPrefix("file:///"))!
+        {
+            print("khong co anh")
+            UI_productimage.kf.setImage(with: URL(string: product.imagechanged!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+                
+                
+            })
+        }
+        else
+        {
+            UI_productimage.kf.setImage(with: URL(string: AppUtils.BASE_URL_IMAGE + (product.imagechanged)!),options: [.transition(.fade(1)),.processor(processor)], completionHandler: { image, error, cacheType, imageURL in
+                
+                
+            })
+        }
     
         UI_productimage.contentMode = .scaleAspectFill
         UI_productimage.clipsToBounds = true
@@ -371,7 +382,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIAlertViewDelega
         if let destinationViewController = segue.destination as? ProductDetailViewController {
             let data:[String: Product] = ["date": product]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadReceive"), object: nil, userInfo: data)
-           
+              AppUtils.reloadNotification()
             destinationViewController.product = product
             destinationViewController.updateUI()
         }

@@ -1,0 +1,237 @@
+
+/* Class = "UILabel"; text = "8623156132454"; ObjectID = "0u8-4M-EDp"; */
+"0u8-4M-EDp.text" = "8623156132454";
+
+/* Class = "UILabel"; text = "Còn 20 ngày"; ObjectID = "1Xm-mn-iee"; */
+"1Xm-mn-iee.text" = "Còn 20 ngày";
+
+/* Class = "UILabel"; text = "Tuy Mazda chưa xác nhận chính thức việc trang bị động cơ SkyActiv-G 2.5T cho mẫu xe crossover CX-5 2019 nhưng tất cả đã được tiết lộ thông qua tài liệu CARB mới rò rỉ"; ObjectID = "1k2-Ng-V8B"; */
+"1k2-Ng-V8B.text" = "Tuy Mazda chưa xác nhận chính thức việc trang bị động cơ SkyActiv-G 2.5T cho mẫu xe crossover CX-5 2019 nhưng tất cả đã được tiết lộ thông qua tài liệu CARB mới rò rỉ";
+
+/* Class = "UILabel"; text = "Sắp hết hạn"; ObjectID = "1pc-fW-jec"; */
+"1pc-fW-jec.text" = "Sắp hết hạn";
+
+/* Class = "UIButton"; normalTitle = "Chưa có tài khoản ? Đăng ký ngay !"; ObjectID = "3Ax-x1-PQ7"; */
+"3Ax-x1-PQ7.normalTitle" = "Don't have account ? Signup now !";
+
+/* Class = "UILabel"; text = "0906448076"; ObjectID = "3Qd-re-4wV"; */
+"3Qd-re-4wV.text" = "0906448076";
+
+/* Class = "UITabBarItem"; title = "Tài khoản"; ObjectID = "8mJ-Vb-7hC"; */
+"8mJ-Vb-7hC.title" = "Account";
+
+/* Class = "UILabel"; text = "120165156565615"; ObjectID = "9fM-a1-jIi"; */
+"9fM-a1-jIi.text" = "120165156565615";
+
+/* Class = "UILabel"; text = "Hết hạn"; ObjectID = "B8c-d4-pFd"; */
+"B8c-d4-pFd.text" = "Expired";
+
+/* Class = "UILabel"; text = "Mô tả"; ObjectID = "B9e-sJ-jFe"; */
+"B9e-sJ-jFe.text" = "Description";
+
+/* Class = "UITextField"; placeholder = "Ngày-Tháng-Năm"; ObjectID = "Bdn-5G-pJB"; */
+"Bdn-5G-pJB.placeholder" = "Day-Month-Year";
+
+/* Class = "UITextField"; placeholder = "Ví dụ : Cam , Chanh , Bưởi"; ObjectID = "Bwf-GA-P9A"; */
+"Bwf-GA-P9A.placeholder" = "E.g : Orange , Lemond , Tomato";
+
+/* Class = "UITabBarItem"; title = "Sản phẩm"; ObjectID = "C5t-5M-sRh"; */
+"C5t-5M-sRh.title" = "Product";
+
+/* Class = "UILabel"; text = "Thông báo"; ObjectID = "C9k-Ba-ilw"; */
+"C9k-Ba-ilw.text" = "Notification";
+
+/* Class = "UILabel"; text = "Còn lại"; ObjectID = "CHu-kS-xTh"; */
+"CHu-kS-xTh.text" = "Remain";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Dyl-sC-Ju4"; */
+"Dyl-sC-Ju4.text" = "Title";
+
+/* Class = "UILabel"; text = "234"; ObjectID = "EEW-29-snH"; */
+"EEW-29-snH.text" = "234";
+
+/* Class = "UILabel"; text = "Mã vạch : "; ObjectID = "Eb0-fQ-1Aj"; */
+"Eb0-fQ-1Aj.text" = "Barcode : ";
+
+/* Class = "UILabel"; text = "Hạn sử dụng"; ObjectID = "FgY-L3-LRv"; */
+"FgY-L3-LRv.text" = "Expired day";
+
+/* Class = "UITextField"; placeholder = "+84"; ObjectID = "Fgg-I1-iKz"; */
+"Fgg-I1-iKz.placeholder" = "+84";
+
+/* Class = "UITextField"; text = "+84"; ObjectID = "Fgg-I1-iKz"; */
+"Fgg-I1-iKz.text" = "+84";
+
+/* Class = "UILabel"; text = "Aquafina vị nguyên bản hương cà phê cực ngon"; ObjectID = "G3I-AD-pTn"; */
+"G3I-AD-pTn.text" = "Aquafina vị nguyên bản hương cà phê cực ngon";
+
+/* Class = "UITextField"; placeholder = "Số ngày báo trước"; ObjectID = "K7z-uG-V1A"; */
+"K7z-uG-V1A.placeholder" = "Remind before";
+
+/* Class = "UILabel"; text = "234"; ObjectID = "LzN-Nk-6xW"; */
+"LzN-Nk-6xW.text" = "234";
+
+/* Class = "UITextField"; placeholder = "Số điện thoại"; ObjectID = "MNS-BD-gj5"; */
+"MNS-BD-gj5.placeholder" = "Phone";
+
+/* Class = "UILabel"; text = "Tên sản phẩm"; ObjectID = "MuJ-B5-358"; */
+"MuJ-B5-358.text" = "Product name";
+
+/* Class = "UILabel"; text = "Đăng xuất"; ObjectID = "Q9C-BU-43s"; */
+"Q9C-BU-43s.text" = "Signout";
+
+/* Class = "UITabBarItem"; title = "Thông báo"; ObjectID = "RSz-uZ-HQ1"; */
+"RSz-uZ-HQ1.title" = "Notification";
+
+/* Class = "UIButton"; normalTitle = "Đăng ký"; ObjectID = "SgR-uP-gEo"; */
+"SgR-uP-gEo.normalTitle" = "Signin";
+
+/* Class = "UILabel"; text = "Hạn sử dụng"; ObjectID = "SyH-HM-bIr"; */
+"SyH-HM-bIr.text" = "Expired day";
+
+/* Class = "UIButton"; normalTitle = "Đăng nhập"; ObjectID = "VOY-1T-qVZ"; */
+"VOY-1T-qVZ.normalTitle" = "Signin";
+
+/* Class = "UIButton"; normalTitle = "Quên mật khẩu"; ObjectID = "VV9-di-yTm"; */
+"VV9-di-yTm.normalTitle" = "Forgot password";
+
+/* Class = "UILabel"; text = "Chào mừng bạn đến với HSD . Hãy tạo một danh sách hạn sử dụng để chúng tôi giúp bạn quản lý nhé !"; ObjectID = "VkS-63-cnM"; */
+"VkS-63-cnM.text" = "Welcome to HSD . Let's create some product expired day list and we will help you manager !";
+
+/* Class = "UILabel"; text = "Thịt bò tươi jhjhhhoi"; ObjectID = "WAX-jF-15Z"; */
+"WAX-jF-15Z.text" = "Thịt bò tươi";
+
+/* Class = "UIButton"; normalTitle = "Thêm sản phẩm"; ObjectID = "XKW-V4-Df5"; */
+"XKW-V4-Df5.normalTitle" = "Create product";
+
+/* Class = "UITabBarItem"; title = "Trang chủ"; ObjectID = "XPY-5G-a4j"; */
+"XPY-5G-a4j.title" = "Home";
+
+/* Class = "UILabel"; text = "234"; ObjectID = "Xnb-H8-vAN"; */
+"Xnb-H8-vAN.text" = "234";
+
+/* Class = "UITextField"; placeholder = "Mật khẩu"; ObjectID = "ZdT-0W-58C"; */
+"ZdT-0W-58C.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Tài khoản thường"; ObjectID = "aFX-Mj-vwC"; */
+"aFX-Mj-vwC.text" = "Tài khoản thường";
+
+/* Class = "UIButton"; normalTitle = "Facebook"; ObjectID = "azL-Dl-0z7"; */
+"azL-Dl-0z7.normalTitle" = "Facebook";
+
+/* Class = "UITextField"; placeholder = "Mật khẩu"; ObjectID = "bTM-nZ-sfz"; */
+"bTM-nZ-sfz.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Mã vạch"; ObjectID = "cQ5-X3-SBE"; */
+"cQ5-X3-SBE.text" = "Barcode";
+
+/* Class = "UIButton"; normalTitle = "Xóa"; ObjectID = "czg-NF-UTi"; */
+"czg-NF-UTi.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = "Tô Tử Siêu"; ObjectID = "d0L-0m-rJt"; */
+"d0L-0m-rJt.text" = "Tô Tử Siêu";
+
+/* Class = "UILabel"; text = "Hoặc"; ObjectID = "dwv-Ds-sQq"; */
+"dwv-Ds-sQq.text" = "Or";
+
+/* Class = "UILabel"; text = "Sử dụng camera để scan tự động mã barcode hoặc nhập barcode để tìm kiếm"; ObjectID = "enU-5s-r7w"; */
+"enU-5s-r7w.text" = "Use camera to scan barcode quickly or type barcode manually";
+
+/* Class = "UITextField"; placeholder = "Nhập mã barcode"; ObjectID = "epx-0Y-t2P"; */
+"epx-0Y-t2P.placeholder" = "Type barcode";
+
+/* Class = "UILabel"; text = "Báo trước"; ObjectID = "f76-4T-eya"; */
+"f76-4T-eya.text" = "Remind before";
+
+/* Class = "UIButton"; normalTitle = "Google"; ObjectID = "h74-fe-VFO"; */
+"h74-fe-VFO.normalTitle" = "Google";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "k6B-Fh-b6P"; */
+"k6B-Fh-b6P.text" = "Label";
+
+/* Class = "UILabel"; text = "Bạn đéo có thông báo nào"; ObjectID = "kDS-JQ-hfD"; */
+"kDS-JQ-hfD.text" = "You don't have any notification";
+
+/* Class = "UILabel"; text = "Chú ý ! Mã vạch là duy nhất và bạn không thể thay đổi được"; ObjectID = "kdi-Xk-3ho"; */
+"kdi-Xk-3ho.text" = "Warning ! Barcode is unique and you can't modify it";
+
+/* Class = "UITextField"; placeholder = "+84"; ObjectID = "ki8-dF-Ivv"; */
+"ki8-dF-Ivv.placeholder" = "+84";
+
+/* Class = "UITextField"; text = "+84"; ObjectID = "ki8-dF-Ivv"; */
+"ki8-dF-Ivv.text" = "+84";
+
+/* Class = "UITabBarItem"; title = "Sản phẩm"; ObjectID = "kkN-JJ-Td8"; */
+"kkN-JJ-Td8.title" = "Product";
+
+/* Class = "UIButton"; normalTitle = "Đã có tài khoản ? Đăng nhập ngay !"; ObjectID = "krB-pm-Ltj"; */
+"krB-pm-Ltj.normalTitle" = "Already have account ? Signin now !";
+
+/* Class = "UILabel"; text = "Nước cam ép đã hết hạn vào ngày hôm nay"; ObjectID = "mni-dv-L0v"; */
+"mni-dv-L0v.text" = "Nước cam ép đã hết hạn vào ngày hôm nay";
+
+/* Class = "UILabel"; text = "Cảnh báo"; ObjectID = "niL-19-EuZ"; */
+"niL-19-EuZ.text" = "Warning";
+
+/* Class = "UITextField"; placeholder = "Số điện thoại"; ObjectID = "oIA-pG-fuv"; */
+"oIA-pG-fuv.placeholder" = "Phone";
+
+/* Class = "UILabel"; text = "Tên sản phẩm"; ObjectID = "oap-fG-mbL"; */
+"oap-fG-mbL.text" = "Product name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "peh-yo-hJ5"; */
+"peh-yo-hJ5.text" = "Label";
+
+/* Class = "UILabel"; text = "Quản lý thời gian thông báo"; ObjectID = "pqT-4q-gVr"; */
+"pqT-4q-gVr.text" = "Notification time manager";
+
+/* Class = "UILabel"; text = "Báo trước"; ObjectID = "pvW-tM-8jU"; */
+"pvW-tM-8jU.text" = "Remind before";
+
+/* Class = "UITextField"; placeholder = "Số ngày báo trước"; ObjectID = "q1Y-hB-Mbc"; */
+"q1Y-hB-Mbc.placeholder" = "Remind before";
+
+/* Class = "UILabel"; text = "An toàn"; ObjectID = "qPy-GH-NWj"; */
+"qPy-GH-NWj.text" = "Safe";
+
+/* Class = "UITextField"; placeholder = "Ví dụ : Cam , Chanh , Bưởi"; ObjectID = "sTR-5U-lqr"; */
+"sTR-5U-lqr.placeholder" = "E.g : Orange , Lemond , Tomato";
+
+/* Class = "UISearchBar"; placeholder = "Nhập tên hoặc mã vạch"; ObjectID = "tMQ-Yf-2GQ"; */
+"tMQ-Yf-2GQ.placeholder" = "Type name or barcode";
+
+/* Class = "UISearchBar"; tMQ-Yf-2GQ.scopeButtonTitles[0] = "Title"; ObjectID = "tMQ-Yf-2GQ"; */
+"tMQ-Yf-2GQ.scopeButtonTitles[0]" = "Title";
+
+/* Class = "UISearchBar"; tMQ-Yf-2GQ.scopeButtonTitles[1] = "Title"; ObjectID = "tMQ-Yf-2GQ"; */
+"tMQ-Yf-2GQ.scopeButtonTitles[1]" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Tạo sản phẩm"; ObjectID = "u8a-UH-mWm"; */
+"u8a-UH-mWm.normalTitle" = "Create product";
+
+/* Class = "UILabel"; text = "Thay đổi mật khẩu"; ObjectID = "uHr-47-Ug8"; */
+"uHr-47-Ug8.text" = "Change password";
+
+/* Class = "UILabel"; text = "Mô tả"; ObjectID = "uUY-6R-PJ3"; */
+"uUY-6R-PJ3.text" = "Description";
+
+/* Class = "UITextField"; placeholder = "Nhập lại mật khẩu"; ObjectID = "vKt-pu-wHM"; */
+"vKt-pu-wHM.placeholder" = "Retype password";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vdO-bS-K8z"; */
+"vdO-bS-K8z.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Ngày-Tháng-Năm"; ObjectID = "wYg-HI-UUu"; */
+"wYg-HI-UUu.placeholder" = "Day-Month-Year";
+
+/* Class = "UIButton"; normalTitle = "Xác nhận"; ObjectID = "xlE-Gs-o5I"; */
+"xlE-Gs-o5I.normalTitle" = "Confirm";
+
+//============================ string on code
+"signin" = "Signin";
+"networkerror" = "Network error";
+"userdecline" = "User decline signin";
+"signinok" = "Signin successful";
+"inputphone" = "Please input phone";
+"inputpasword" = "Please input password";
+"wrongpassword" = "Phone or password is incorrect";

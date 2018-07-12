@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import Kingfisher
 
-class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UINavigationControllerDelegate {
     var product : Product? = nil
     
     var previewtime = Date()
@@ -30,8 +30,7 @@ class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImageP
     @IBOutlet weak var UI_barcode: UILabel!
 
     
- 
-    var picker:UIImagePickerController?=UIImagePickerController()
+
 
  
 
@@ -65,10 +64,8 @@ class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImageP
         
      
         previewtime =  Date(timeIntervalSince1970: (product?.expiretime)!/1000)
-        picker!.delegate=self
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        UI_productimage.isUserInteractionEnabled = true
-        UI_productimage.addGestureRecognizer(tapGestureRecognizer)
+  
+    
         
    
 
@@ -158,107 +155,7 @@ class ProductDetailViewController: UIViewController,UIAlertViewDelegate,UIImageP
        self.performSegue(withIdentifier: "goto_edit", sender: self)
         
     }
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        print("chon anh")
-        
-        let alert:UIAlertController=UIAlertController(title: "Chọn hình ảnh", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Chụp ảnh", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
-            self.openCamera()
-            
-        }
-        let gallaryAction = UIAlertAction(title: "Thư viện", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
-            self.openGallary()
-        }
-        let cancelAction = UIAlertAction(title: "Hủy bỏ", style: UIAlertActionStyle.cancel)
-        {
-            UIAlertAction in
-            
-        }
-        
-        // Add the actions
-        picker?.delegate = self
-        alert.addAction(cameraAction)
-        alert.addAction(gallaryAction)
-        alert.addAction(cancelAction)
-        // Present the controller
-        if UIDevice.current.userInterfaceIdiom == .phone
-        {
-            self.present(alert, animated: true, completion: nil)
-        }
-        else
-        {
-            
-        }
-    }
-    func openCamera()
-    {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
-        {
-            picker!.sourceType = UIImagePickerControllerSourceType.camera
-            self .present(picker!, animated: true, completion: nil)
-        }
-        else
-        {
-            openGallary()
-        }
-    }
-    func openGallary()
-    {
-        self.authorizeToAlbum { (authorized) in
-            if authorized == true {
-                self.picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
-                
-                self.present(self.picker!, animated: true, completion: nil)
-                
-                
-                
-            }
-        }
-        
-        
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            UI_productimage.image = AppUtils.resize(image: image)
-        }
-        
-        picker.dismiss(animated: true, completion: nil);
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-    {
-        picker.dismiss(animated: true, completion: nil);
-    }
-    
-    func authorizeToAlbum(completion:@escaping (Bool)->Void) {
-        
-        if PHPhotoLibrary.authorizationStatus() != .authorized {
-            NSLog("Will request authorization")
-            PHPhotoLibrary.requestAuthorization({ (status) in
-                if status == .authorized {
-                    DispatchQueue.main.async(execute: {
-                        completion(true)
-                    })
-                } else {
-                    DispatchQueue.main.async(execute: {
-                        completion(false)
-                    })
-                }
-            })
-            
-        } else {
-            DispatchQueue.main.async(execute: {
-                completion(true)
-            })
-        }
-    }
+  
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sửa", style: .done, target: self, action: #selector(editTapped))

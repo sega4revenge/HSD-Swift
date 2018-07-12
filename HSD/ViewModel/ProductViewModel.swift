@@ -71,7 +71,7 @@ class ProductViewModel: NSObject {
                     a._id = url + idproduct
                     a.type = idproduct
                     a.params?.append(idproduct)
-                     a.params?.append(iduser)
+                    a.params?.append(iduser)
                     
                     
                     
@@ -256,6 +256,51 @@ class ProductViewModel: NSObject {
                     a.params?.append(String(product.expiretime))
                     a.params?.append(product.des!)
                     a.params?.append(String(product.daybefore))
+                    AppUtils.getInstance().add(a, update: true)
+                    
+                    
+                    
+                }
+            }
+            else
+            {
+                // Other errors
+            }
+            
+            complete()
+        }
+        
+        
+    }
+    
+    func addOrUpdateNotification(notification : NotificationModel,complete: @escaping DownloadComplete) {
+        print("bat dau xoa")
+        let parameters = [
+            "id_product" : notification.productid!,
+            "idUser" : AppUtils.getUserID(),
+            "type" : 0,
+            "status_expiry" : "expired",
+            "watched" : true,
+            "time" : notification.create_at
+            ] as [String : Any]
+        
+        
+        Alamofire.request("\(AppUtils.BASE_URL)/notification/update_or_add_notification", method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: nil).responseObject { (response: DataResponse<Response>) in
+            if let err = response.result.error as? URLError, err.code  == URLError.Code.notConnectedToInternet
+            {
+                let url = "\(AppUtils.BASE_URL)/notification/update_or_add_notification"
+                
+                try! AppUtils.getInstance().write {
+                    let a = RequestObject()
+                    a.url = url
+                    a._id = url + notification.productid! + "expired"
+                    a.type = notification.productid!
+                    a.params?.append(notification.productid!)
+                    a.params?.append(AppUtils.getUserID())
+                    a.params?.append(String(0))
+                    a.params?.append("expired")
+                    a.params?.append(String(true))
+                     a.params?.append(String(notification.create_at))
                     AppUtils.getInstance().add(a, update: true)
                     
                     
